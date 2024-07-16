@@ -20,6 +20,7 @@ import QuickSearch from "@/components/QuickSearch";
 import SwitchAccount from "@/components/SwitchAccount";
 import NotificationsPanel from "@/components/NotificationsPanel";
 import ActivitiesPanel from "@/components/ActivitiesPanel";
+import app_logo from "@/assets/images/app_logo.png";
 
 function Main() {
   const dispatch = useAppDispatch();
@@ -145,14 +146,15 @@ function Main() {
               className="flex items-center transition-[margin] duration-300 group-[.side-menu--collapsed]:xl:ml-2 group-[.side-menu--collapsed.side-menu--on-hover]:xl:ml-0"
             >
               <div className="flex items-center justify-center w-[34px] rounded-lg h-[34px] bg-gradient-to-b from-theme-1 to-theme-2/80 transition-transform ease-in-out group-[.side-menu--collapsed.side-menu--on-hover]:xl:-rotate-180">
-                <div className="w-[16px] h-[16px] relative -rotate-45 [&_div]:bg-white">
-                  <div className="absolute w-[21%] left-0 inset-y-0 my-auto rounded-full opacity-50 h-[75%]"></div>
+                <div className="w-[26px] h-[26px] relative -rotate-45 [&_div]:bg-white">
+                  {/* <div className="absolute w-[21%] left-0 inset-y-0 my-auto rounded-full opacity-50 h-[75%]"></div>
                   <div className="absolute w-[21%] inset-0 m-auto h-[120%] rounded-full"></div>
-                  <div className="absolute w-[21%] right-0 inset-y-0 my-auto rounded-full opacity-50 h-[75%]"></div>
+                  <div className="absolute w-[21%] right-0 inset-y-0 my-auto rounded-full opacity-50 h-[75%]"></div> */}
+                  <img src={app_logo}/>
                 </div>
               </div>
               <div className="ml-3.5 group-[.side-menu--collapsed.side-menu--on-hover]:xl:opacity-100 group-[.side-menu--collapsed]:xl:opacity-0 transition-opacity font-medium">
-                ECHO
+                Streamiey
               </div>
             </a>
             <a

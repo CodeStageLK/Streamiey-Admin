@@ -17,47 +17,46 @@ export interface SideMenuState {
 
 const initialState: SideMenuState = {
   menu: [
-    "DASHBOARDS",
     {
       icon: "GaugeCircle",
       pathname: "/",
-      title: "E-Commerce",
+      title: "Dashboard",
     },
     {
       icon: "ActivitySquare",
       pathname: "/dashboard-overview-2",
-      title: "CRM",
+      title: "Content",
     },
     {
       icon: "Album",
-      pathname: "/dashboard-overview-3",
-      title: "Hospital",
+      pathname: "/settings",
+      title: "Settings",
     },
-    {
-      icon: "BookMarked",
-      pathname: "/dashboard-overview-4",
-      title: "Factory",
-    },
-    {
-      icon: "HardDrive",
-      pathname: "/dashboard-overview-5",
-      title: "Banking",
-    },
-    {
-      icon: "MousePointerSquare",
-      pathname: "/dashboard-overview-6",
-      title: "Cafe",
-    },
-    {
-      icon: "ShieldHalf",
-      pathname: "/dashboard-overview-7",
-      title: "Crypto",
-    },
-    {
-      icon: "Building",
-      pathname: "/dashboard-overview-8",
-      title: "Hotel",
-    },
+    // {
+    //   icon: "BookMarked",
+    //   pathname: "/dashboard-overview-4",
+    //   title: "Factory",
+    // },
+    // {
+    //   icon: "HardDrive",
+    //   pathname: "/dashboard-overview-5",
+    //   title: "Banking",
+    // },
+    // {
+    //   icon: "MousePointerSquare",
+    //   pathname: "/dashboard-overview-6",
+    //   title: "Cafe",
+    // },
+    // {
+    //   icon: "ShieldHalf",
+    //   pathname: "/dashboard-overview-7",
+    //   title: "Crypto",
+    // },
+    // {
+    //   icon: "Building",
+    //   pathname: "/dashboard-overview-8",
+    //   title: "Hotel",
+    // },
     // "APPS",
     // {
     //   icon: "GanttChartSquare",

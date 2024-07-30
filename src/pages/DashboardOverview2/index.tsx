@@ -23,12 +23,16 @@ import {
   Highlight,
 } from "@/components/Base/PreviewComponent";
 import LineChart from "@/components/LineChart";
-import hotel from "@/fakers/hotel";
-import products from "@/fakers/products";
-import reviews from "@/fakers/reviews";
+import { useNavigate } from "react-router-dom";
 
 function Main() {
   const [generalReportFilter, setGeneralReportFilter] = useState<string>();
+
+  const navigate = useNavigate();
+  
+  const gotoForm = ()=>{
+    navigate("/events/add-event");
+  }
 
   return (
     <div className="grid grid-cols-12 gap-y-10 gap-x-6">
@@ -36,7 +40,7 @@ function Main() {
         <div className="flex flex-col md:h-10 gap-y-3 md:justify-between md:flex-row">
           <div className="text-base font-medium group-[.mode--light]:text-white"></div>
           <div className="text-base font-medium group-[.mode--light]:text-white">
-            <Button variant="primary" className="w-44">
+            <Button variant="primary" className="w-44" onClick={gotoForm}>
               <Lucide icon="Plus" className="w-4 h-4 mr-2" /> Add New Event
             </Button>
           </div>

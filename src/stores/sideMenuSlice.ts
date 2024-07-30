@@ -28,7 +28,7 @@ const initialState: SideMenuState = {
       subMenu: [
             {
               icon: "CalendarRange",
-              pathname: "/dashboard-overview-2",
+              pathname: "/events",
               title: "Events",
             },
             {

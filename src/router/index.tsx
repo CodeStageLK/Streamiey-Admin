@@ -60,6 +60,7 @@ import Chart from "../pages/Chart";
 import Slider from "../pages/Slider";
 import ImageZoom from "../pages/ImageZoom";
 import LandingPage from "../pages/LandingPage";
+import AddEvent from "../pages/AddEvent";
 
 import Layout from "../themes";
 
@@ -74,7 +75,7 @@ function Router() {
           element: <DashboardOverview1 />,
         },
         {
-          path: "dashboard-overview-2",
+          path: "events",
           element: <DashboardOverview2 />,
         },
         {
@@ -128,6 +129,10 @@ function Router() {
         {
           path: "invoice",
           element: <Invoice />,
+        },
+        {
+          path: "events/add-event",
+          element: <AddEvent />,
         },
         {
           path: "categories",

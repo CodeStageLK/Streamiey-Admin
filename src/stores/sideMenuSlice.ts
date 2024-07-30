@@ -24,8 +24,24 @@ const initialState: SideMenuState = {
     },
     {
       icon: "ActivitySquare",
-      pathname: "/dashboard-overview-2",
       title: "Content",
+      subMenu: [
+          {
+            icon: "DivideSquare",
+            pathname: "/dashboard-overview-2",
+            title: "Events",
+          },
+            {
+              icon: "DivideSquare",
+              pathname: "/transaction-list",
+              title: "Transactions",
+            },
+            // {
+            //   icon: "PlusSquare",
+            //   pathname: "/transaction-detail",
+            //   title: "Transaction Detail",
+            // },
+        ]
     },
     {
       icon: "Album",

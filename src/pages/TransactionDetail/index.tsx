@@ -14,7 +14,7 @@ function Main() {
   const navigate = useNavigate();
   
   const gotoDetails = ()=>{
-    navigate("/transaction-list");
+    navigate("/transactions");
   }
   return (
     <div className="grid grid-cols-12 gap-y-10 gap-x-6">

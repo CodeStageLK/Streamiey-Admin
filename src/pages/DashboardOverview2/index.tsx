@@ -34,14 +34,19 @@ function Main() {
     <div className="grid grid-cols-12 gap-y-10 gap-x-6">
       <div className="col-span-12">
         <div className="flex flex-col md:h-10 gap-y-3 md:justify-between md:flex-row">
+          <div className="text-base font-medium group-[.mode--light]:text-white"></div>
           <div className="text-base font-medium group-[.mode--light]:text-white">
-            Event live right now
-          </div>
-          <div className="text-base font-medium group-[.mode--light]:text-white">
-            <Button variant="primary" className="w-32">
-              <Lucide icon="Plus" className="w-4 h-4 mr-2" /> Event
+            <Button variant="primary" className="w-44">
+              <Lucide icon="Plus" className="w-4 h-4 mr-2" /> Add New Event
             </Button>
           </div>
+        </div>
+
+        <div className="flex flex-col md:h-10 gap-y-3 md:justify-between md:flex-row">
+          <div className="text-lg font-medium group-[.mode--light]:text-white">
+            Event live right now
+          </div>
+          <div className="text-base font-medium group-[.mode--light]:text-white"></div>
         </div>
 
         <div className="mt-3.5 grid grid-cols-12 gap-y-10 gap-x-6">

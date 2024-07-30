@@ -202,11 +202,12 @@ function Main() {
                       <Table.Tr
                         key={fakerKey}
                         className="[&_td]:last:border-b-0"
+                        onClick={gotoDetails}
                       >
                         <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
                           <FormCheck.Input type="checkbox" />
                         </Table.Td>
-                        <Table.Td className="py-4 border-dashed w-44 dark:bg-darkmode-600" onClick={gotoDetails}>
+                        <Table.Td className="py-4 border-dashed w-44 dark:bg-darkmode-600 cursor-pointer" >
                           <div className="flex items-center" >
                             <div className="w-9 h-9 image-fit zoom-in">
                               <Tippy

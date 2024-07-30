@@ -16,6 +16,16 @@ import Litepicker from "@/components/Base/Litepicker";
 import Table from "@/components/Base/Table";
 import { useState, useRef } from "react";
 import clsx from "clsx";
+import {
+  PreviewComponent,
+  Preview,
+  Source,
+  Highlight,
+} from "@/components/Base/PreviewComponent";
+import LineChart from "@/components/LineChart";
+import hotel from "@/fakers/hotel";
+import products from "@/fakers/products";
+import reviews from "@/fakers/reviews";
 
 function Main() {
   const [generalReportFilter, setGeneralReportFilter] = useState<string>();
@@ -385,14 +395,185 @@ function Main() {
         </div>
       </div> */}
 
+<div className="col-span-12">
+        <div className="flex flex-col md:h-10 gap-y-3 md:items-center md:flex-row">
+          <div className="text-lg font-medium">Revenue Generated</div>
+        </div>
+
+        <div className="col-span-12 mb-5 2xl:col-span-9">
+          <div>
+            <div className="mt-3.5">
+              <div className="flex flex-col gap-3 xl:flex-row ">
+                <div>
+                  <div className="z-10 gap-5  flex flex-col lg:flex-row xl:flex-col items-center xl:items-start xl:w-[500px] overflow-hidden flex-1 px-10 rounded-[0.6rem] bg-gradient-to-b from-theme-2/90 to-theme-1/[0.85] py-12 xl:py-9 relative before:content-[''] before:w-full before:h-[130%] before:bg-gradient-to-b before:from-black/[0.08] before:to-transparent before:absolute before:left-0 before:top-0 before:-rotate-[38deg] before:hidden before:xl:block before:-ml-[35%]">
+                    <div>
+                      <div className="text-base text-center text-white lg:text-left">
+                        Total Revenue
+                      </div>
+                      <div className="flex items-center justify-center mt-2 lg:justify-start">
+                        <div className="text-2xl font-medium text-white">
+                          $92,464.00
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-center mt-2 lg:justify-start">
+                        <div className="text-sm font-medium text-slate-400">
+                          overall
+                        </div>
+                        <div className="flex items-center ml-2.5 border border-success/50 bg-success/50 rounded-full pl-[7px] pr-1 py-[2px] text-xs font-medium text-white/90">
+                          12%
+                          <Lucide
+                            icon="ChevronUp"
+                            className="w-4 h-4 ml-px stroke-[1.5]"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col w-full p-5 sm:py-7 sm:px-8 border rounded-[0.6rem] border-slate-300/80 border-dashed">
+                  <div className="flex flex-col sm:items-center sm:flex-row gap-x-3 gap-y-2">
+                    <div className="relative">
+                      <Lucide
+                        icon="CalendarCheck2"
+                        className="absolute inset-y-0 left-0 z-10 w-4 h-4 my-auto ml-3 stroke-[1.3]"
+                      />
+                      <FormSelect className="sm:w-44 pl-9">
+                        <option value="custom-date">Custom Date</option>
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="yearly">Yearly</option>
+                      </FormSelect>
+                    </div>
+                    <div className="relative">
+                      <Lucide
+                        icon="Calendar"
+                        className="absolute inset-y-0 left-0 z-10 w-4 h-4 my-auto ml-3 stroke-[1.3]"
+                      />
+                      <Litepicker
+                        value={generalReportFilter}
+                        onChange={(e) => {
+                          setGeneralReportFilter(e.target.value);
+                        }}
+                        options={{
+                          autoApply: false,
+                          singleMode: false,
+                          numberOfColumns: 2,
+                          numberOfMonths: 2,
+                          showWeekNumbers: true,
+                          dropdowns: {
+                            minYear: 1990,
+                            maxYear: null,
+                            months: true,
+                            years: true,
+                          },
+                        }}
+                        className="pl-9 sm:w-64 rounded-[0.3rem]"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex flex-col flex-1 mt-6 gap-y-5 sm:mt-8 sm:mb-4 lg:mt-6 xl:mb-0 md:flex-row">
+                    <div className="grid grid-cols-2 gap-5 md:-mt-2 md:-mb-4 xl:gap-0">
+                      <div className="flex flex-col justify-center flex-1 col-span-2 sm:col-span-1 md:col-span-2">
+                        <div className="flex items-center mb-1.5">
+                          <div className="text-base">1,728</div>
+                          <div className="flex items-center ml-2 -mr-1 text-xs text-success">
+                            10%
+                            <Lucide
+                              className="w-4 h-4 ml-px stroke-[1]"
+                              icon="ChevronUp"
+                            />
+                          </div>
+                        </div>
+                        <div className="flex items-center text-slate-500">
+                          <span className="sm:max-w-[9rem] truncate">
+                            From Overlay Ads
+                          </span>
+                          <Tippy as="a" content="Compared to last week">
+                            <Lucide
+                              className="w-3.5 h-3.5 ml-1.5 stroke-[1.3] text-slate-400"
+                              icon="Info"
+                            />
+                          </Tippy>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-5 md:mx-auto md:-mt-2 md:-mb-4 xl:gap-0">
+                      <div className="flex flex-col justify-center flex-1 col-span-2 sm:col-span-1 md:col-span-2">
+                        <div className="flex items-center mb-1.5">
+                          <div className="text-base">3,328</div>
+                          <div className="flex items-center ml-2 -mr-1 text-xs text-success">
+                            32%
+                            <Lucide
+                              className="w-4 h-4 ml-px stroke-[1]"
+                              icon="ChevronUp"
+                            />
+                          </div>
+                        </div>
+                        <div className="flex items-center text-slate-500">
+                          <span className="sm:max-w-[9rem] truncate">
+                            From Banner Ads
+                          </span>
+                          <Tippy as="a" content="Compared to last week">
+                            <Lucide
+                              className="w-3.5 h-3.5 ml-1.5 stroke-[1.3] text-slate-400"
+                              icon="Info"
+                            />
+                          </Tippy>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-5 md:-mt-2 md:-mb-4 xl:gap-0">
+                      <div className="flex flex-col justify-center flex-1 col-span-2 sm:col-span-1 md:col-span-2">
+                        <div className="flex items-center mb-1.5">
+                          <div className="text-base">549</div>
+                          <div className="flex items-center ml-2 -mr-1 text-xs text-danger">
+                            4%
+                            <Lucide
+                              className="w-4 h-4 ml-px stroke-[1]"
+                              icon="ChevronDown"
+                            />
+                          </div>
+                        </div>
+                        <div className="flex items-center text-slate-500">
+                          <span className="sm:max-w-[9rem] truncate">
+                            From VAST Ads
+                          </span>
+                          <Tippy as="a" content="Compared to last week">
+                            <Lucide
+                              className="w-3.5 h-3.5 ml-1.5 stroke-[1.3] text-slate-400"
+                              icon="Info"
+                            />
+                          </Tippy>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col p-3 mt-4 box ">
+          <div className="border rounded-[0.6rem] dark:border-darkmode-400 relative mt-7 mb-4 border-slate-200/80">
+            <div className="px-5 py-2 flex flex-col gap-3.5">
+              <Preview>
+                <LineChart height={200} />
+              </Preview>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="col-span-12">
         <div className="flex flex-col md:h-10 gap-y-3 md:items-center md:flex-row">
-          <div className="text-base font-medium">Upcoming Events</div>
+          <div className="text-lg font-medium">Upcoming Events</div>
         </div>
         <div className="mt-2 overflow-auto lg:overflow-visible">
           <Table className="border-spacing-y-[10px] border-separate">
             <Table.Tbody>
-              {_.take(transactions.fakeTransactions(), 5).map(
+              {_.take(transactions.fakeTransactions(), 6).map(
                 (faker, fakerKey) => (
                   <Table.Tr key={fakerKey}>
                     <Table.Td className="box shadow-[5px_3px_5px_#00000005] first:border-l last:border-r first:rounded-l-[0.6rem] last:rounded-r-[0.6rem] rounded-l-none rounded-r-none border-x-0 dark:bg-darkmode-600">
@@ -426,35 +607,6 @@ function Main() {
                       <div className="ml-1.5 whitespace-nowrap text-primary">
                         {faker.user.Scheduled}
                       </div>
-                      {/* <div className="flex mb-1">
-                        <div className="w-5 h-5 image-fit zoom-in">
-                          <Tippy
-                            as="img"
-                            alt="Tailwise - Admin Dashboard Template"
-                            className="rounded-full shadow-[0px_0px_0px_2px_#fff,_1px_1px_5px_rgba(0,0,0,0.32)] dark:shadow-[0px_0px_0px_2px_#3f4865,_1px_1px_5px_rgba(0,0,0,0.32)]"
-                            src={faker.products[0].images[0].path}
-                            content={faker.products[0].name}
-                          />
-                        </div>
-                        <div className="w-5 h-5 -ml-1.5 image-fit zoom-in">
-                          <Tippy
-                            as="img"
-                            alt="Tailwise - Admin Dashboard Template"
-                            className="rounded-full shadow-[0px_0px_0px_2px_#fff,_1px_1px_5px_rgba(0,0,0,0.32)] dark:shadow-[0px_0px_0px_2px_#3f4865,_1px_1px_5px_rgba(0,0,0,0.32)]"
-                            src={faker.products[1].images[0].path}
-                            content={faker.products[1].name}
-                          />
-                        </div>
-                        <div className="w-5 h-5 -ml-1.5 image-fit zoom-in">
-                          <Tippy
-                            as="img"
-                            alt="Tailwise - Admin Dashboard Template"
-                            className="rounded-full shadow-[0px_0px_0px_2px_#fff,_1px_1px_5px_rgba(0,0,0,0.32)] dark:shadow-[0px_0px_0px_2px_#3f4865,_1px_1px_5px_rgba(0,0,0,0.32)]"
-                            src={faker.products[2].images[0].path}
-                            content={faker.products[2].name}
-                          />
-                        </div>
-                      </div> */}
                     </Table.Td>
                     <Table.Td className="w-44 box shadow-[5px_3px_5px_#00000005] first:border-l last:border-r first:rounded-l-[0.6rem] last:rounded-r-[0.6rem] rounded-l-none rounded-r-none border-x-0 dark:bg-darkmode-600">
                       <div className="mb-1 text-xs text-slate-500 whitespace-nowrap"></div>
@@ -473,20 +625,6 @@ function Main() {
                           Go live now
                         </Button>
                       </div>
-                      {/* <div
-                        className={clsx([
-                          "flex items-center",
-                          faker.orderStatus.textColor,
-                        ])}
-                      >
-                        <Lucide
-                          icon={faker.orderStatus.icon}
-                          className="w-3.5 h-3.5 stroke-[1.7]"
-                        />
-                        <div className="ml-1.5 whitespace-nowrap">
-                          {faker.orderStatus.name}
-                        </div>
-                      </div> */}
                     </Table.Td>
                     <Table.Td className="w-20 relative py-0 box shadow-[5px_3px_5px_#00000005] first:border-l last:border-r first:rounded-l-[0.6rem] last:rounded-r-[0.6rem] rounded-l-none rounded-r-none border-x-0 dark:bg-darkmode-600">
                       <div className="flex items-center justify-center">
@@ -523,34 +661,47 @@ function Main() {
             </Table.Tbody>
           </Table>
         </div>
-        <div className="flex flex-col-reverse flex-wrap items-center mt-3 flex-reverse gap-y-2 sm:flex-row">
-          <Pagination className="flex-1 w-full mr-auto sm:w-auto">
-            <Pagination.Link>
-              <Lucide icon="ChevronsLeft" className="w-4 h-4" />
-            </Pagination.Link>
-            <Pagination.Link>
-              <Lucide icon="ChevronLeft" className="w-4 h-4" />
-            </Pagination.Link>
-            <Pagination.Link>...</Pagination.Link>
-            <Pagination.Link>1</Pagination.Link>
-            <Pagination.Link active>2</Pagination.Link>
-            <Pagination.Link>3</Pagination.Link>
-            <Pagination.Link>...</Pagination.Link>
-            <Pagination.Link>
-              <Lucide icon="ChevronRight" className="w-4 h-4" />
-            </Pagination.Link>
-            <Pagination.Link>
-              <Lucide icon="ChevronsRight" className="w-4 h-4" />
-            </Pagination.Link>
-          </Pagination>
-          <FormSelect className="sm:w-20 rounded-[0.5rem]">
-            <option>10</option>
-            <option>25</option>
-            <option>35</option>
-            <option>50</option>
-          </FormSelect>
-        </div>
       </div>
+
+
+      <div className="col-span-12">
+        <div className="flex flex-col md:h-10 gap-y-3 md:items-center md:flex-row">
+          <div className="text-lg font-medium">All Events</div>
+        </div>
+        <div className="overflow-hidden">
+              <div className="grid grid-cols-12 -mx-5 border-dashed border-y">
+                {_.take(transactions.fakeTransactions(), 4).map((faker, fakerKey) => (
+                  <div
+                    key={fakerKey}
+                    className="col-span-12 sm:col-span-6 xl:col-span-3 border-dashed border-slate-300/80 [&:nth-child(4n)]:border-r-0 px-5 py-5 [&:nth-last-child(-n+4)]:border-b-0 border-r border-b flex flex-col"
+                  >
+                    <div className="overflow-hidden rounded-lg h-80 image-fit before:block before:absolute before:w-full before:h-full before:top-0 before:left-0 before:z-10 before:bg-gradient-to-t before:from-slate-900/90 before:to-black/20">
+                      <img
+                        alt="event thumbnail"
+                        className="rounded-md"
+                        src={faker.products[0].images[0].path}
+                      />
+  
+                      <div className="absolute bottom-0 z-10 w-full px-5 pb-6 text-white">
+                        <a
+                          href=""
+                          className="block text-lg font-medium truncate"
+                        >
+                          {faker.orderId}
+                        </a>
+                        <span className="mt-3 text-xs text-white/80">
+                          {faker.category.name}
+                        </span>
+                      </div>
+                    </div>
+                    
+                  </div>
+                ))}
+              </div>
+            </div>
+      </div>
+
+
     </div>
   );
 }

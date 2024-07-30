@@ -12,9 +12,15 @@ import Table from "@/components/Base/Table";
 import { useState } from "react";
 import clsx from "clsx";
 import _ from "lodash";
+import { useNavigate } from "react-router-dom";
 
 function Main() {
   const [selectedUser, setSelectedUser] = useState("1");
+  const navigate = useNavigate();
+  
+  const gotoDetails = ()=>{
+    navigate("/transaction-detail");
+  }
 
   return (
     <div className="grid grid-cols-12 gap-y-10 gap-x-6">
@@ -200,8 +206,8 @@ function Main() {
                         <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
                           <FormCheck.Input type="checkbox" />
                         </Table.Td>
-                        <Table.Td className="py-4 border-dashed w-44 dark:bg-darkmode-600">
-                          <div className="flex items-center">
+                        <Table.Td className="py-4 border-dashed w-44 dark:bg-darkmode-600" onClick={gotoDetails}>
+                          <div className="flex items-center" >
                             <div className="w-9 h-9 image-fit zoom-in">
                               <Tippy
                                 as="img"
@@ -333,3 +339,7 @@ function Main() {
 }
 
 export default Main;
+function gotoDetails() {
+  throw new Error("Function not implemented.");
+}
+

@@ -8,222 +8,66 @@ import Tippy from "@/components/Base/Tippy";
 import Button from "@/components/Base/Button";
 import { Tab } from "@/components/Base/Headless";
 import _ from "lodash";
-
+import LoadingIcon from "@/components/Base/LoadingIcon";
+import mountainImage from "@/assets/images/miscellaneous/cheer.png";
 function Main() {
   return (
     <div className="grid grid-cols-12 gap-y-10 gap-x-6">
       <div className="col-span-12">
-        <Tab.Group>
-          <div className="flex flex-col md:h-10 gap-y-3 md:items-center md:flex-row">
-            <div className="text-base font-medium group-[.mode--light]:text-white">
-              Project Statistic
-            </div>
-            <Tab.List
-              variant="boxed-tabs"
-              className="w-auto md:ml-auto bg-white box rounded-[0.6rem] border-slate-200 group-[.mode--light]:!bg-white/[0.12] group-[.mode--light]:!border-transparent"
-            >
-              <Tab className="bg-slate-50 first:rounded-l-[0.6rem] last:rounded-r-[0.6rem] [&[aria-selected='true']_button]:text-current group-[.mode--light]:bg-transparent group-[.mode--light]:[&[aria-selected='true']_button]:bg-white/[0.12] group-[.mode--light]:[&[aria-selected='true']_button]:border-transparent">
-                <Tab.Button
-                  className="w-full md:w-24 text-slate-500 whitespace-nowrap rounded-[0.6rem] group-[.mode--light]:text-slate-200"
-                  as="button"
-                >
-                  Daily
-                </Tab.Button>
-              </Tab>
-              <Tab className="bg-slate-50 first:rounded-l-[0.6rem] last:rounded-r-[0.6rem] [&[aria-selected='true']_button]:text-current group-[.mode--light]:bg-transparent group-[.mode--light]:[&[aria-selected='true']_button]:bg-white/[0.12] group-[.mode--light]:[&[aria-selected='true']_button]:border-transparent">
-                <Tab.Button
-                  className="w-full md:w-24 text-slate-500 whitespace-nowrap rounded-[0.6rem] group-[.mode--light]:text-slate-200"
-                  as="button"
-                >
-                  Monthly
-                </Tab.Button>
-              </Tab>
-              <Tab className="bg-slate-50 first:rounded-l-[0.6rem] last:rounded-r-[0.6rem] [&[aria-selected='true']_button]:text-current group-[.mode--light]:bg-transparent group-[.mode--light]:[&[aria-selected='true']_button]:bg-white/[0.12] group-[.mode--light]:[&[aria-selected='true']_button]:border-transparent">
-                <Tab.Button
-                  className="w-full md:w-24 text-slate-500 whitespace-nowrap rounded-[0.6rem] group-[.mode--light]:text-slate-200"
-                  as="button"
-                >
-                  Yearly
-                </Tab.Button>
-              </Tab>
-            </Tab.List>
+        <div className="flex flex-col md:h-10 gap-y-3 md:justify-between md:flex-row">
+          <div className="text-base font-medium group-[.mode--light]:text-white">
+            Event live right now
           </div>
-          <Tab.Panels className="mt-3.5 box box--stacked">
-            <Tab.Panel className="flex flex-col xl:flex-row gap-2 p-1.5 leading-relaxed">
-              <div className="grid w-full grid-cols-4 gap-2">
-                <div className="col-span-4 sm:col-span-2 xl:col-span-1 bg-gradient-to-b from-theme-2/90 to-theme-1/[0.85] flex-1 p-5 border-0 relative rounded-[0.6rem] box border-slate-200/60 bg-slate-50 overflow-hidden before:content-[''] before:w-full before:h-[130%] before:bg-gradient-to-b before:from-black/[0.15] before:to-transparent before:absolute before:right-0 before:top-0 before:rotate-45 before:-mr-[62%]">
-                  <div className="flex items-center justify-center w-12 h-12 border rounded-full border-white/10 bg-white/10">
-                    <Lucide
-                      icon="Database"
-                      className="w-6 h-6 text-white fill-white/10"
-                    />
+          <div className="text-base font-medium group-[.mode--light]:text-white">
+          <Button variant="primary" className="w-32">
+                  <Lucide
+                    icon="Plus"
+                    className="w-4 h-4 mr-2"
+                  />{" "}
+                   Event
+                </Button>
+          </div>
+          
+        </div>
+        
+
+        <div className="mt-3.5 grid grid-cols-12 gap-y-10 gap-x-6">
+          <div className="col-span-12 xl:col-span-12 p-1 box box--stacked">
+            <div className="relative">
+              <div className="overflow-hidden rounded-lg h-96 image-fit before:block before:absolute before:w-full before:h-2/6 before:bottom-0 before:left-0 before:z-10 before:bg-gradient-to-t before:from-neutral-900 before:to-transparent">
+                <img
+                  alt="Tailwise - Admin Dashboard Template"
+                  className="rounded-md saturate-150"
+                  src={mountainImage}
+                />
+                <div className="absolute inset-0 z-10 flex flex-col items-end justify-end gap-2 -mt-10 p-5 border bg-primary/[0.03] border-primary/5 rounded-lg">
+                  <div className="flex flex-col justify-end">
+                    {/* <div className="mt-3.5 text-lg font-medium text-slate-100">
+                          Tailwise Pty Ltd.
+                        </div> */}
                   </div>
-                  <div className="flex items-center mt-12">
-                    <div className="text-2xl font-medium text-white">
-                      247,220
+                  <div className="md:text-right md:ml-auto text-slate-100">
+                    <Button variant="danger">
+                      LIVE
+                      <LoadingIcon
+                        icon="puff"
+                        color="white"
+                        className="w-4 h-4 ml-2"
+                      />
+                    </Button>
+                    <div className="mt-1 font-medium">
+                      Sunday, 20th June 2022
                     </div>
-                    <div className="flex items-center ml-3.5 border border-success/50 bg-success/50 rounded-full pl-[7px] pr-1 py-[2px] text-xs font-medium text-white/90">
-                      12%
-                      <Lucide
-                        icon="ChevronUp"
-                        className="w-4 h-4 ml-px stroke-[1.5]"
-                      />
-                    </div>
-                  </div>
-                  <div className="mt-1 text-base text-white/70">
-                    Customer Engagement
-                  </div>
-                  <Menu className="absolute top-0 right-0 mt-5 mr-5">
-                    <Menu.Button className="w-5 h-5 text-slate-500">
-                      <Lucide
-                        icon="MoreVertical"
-                        className="w-6 h-6 stroke-white/70 fill-white/70"
-                      />
-                    </Menu.Button>
-                    <Menu.Items className="w-40">
-                      <Menu.Item>
-                        <Lucide icon="Copy" className="w-4 h-4 mr-2" /> Copy
-                        Link
-                      </Menu.Item>
-                      <Menu.Item>
-                        <Lucide icon="Trash" className="w-4 h-4 mr-2" />
-                        Delete
-                      </Menu.Item>
-                    </Menu.Items>
-                  </Menu>
-                </div>
-                <div className="col-span-4 sm:col-span-2 xl:col-span-1 flex-1 p-5 border relative rounded-[0.6rem] bg-slate-50/50 overflow-hidden">
-                  <div className="flex items-center justify-center w-12 h-12 border rounded-full border-primary/10 bg-primary/10">
-                    <Lucide
-                      icon="AppWindow"
-                      className="w-6 h-6 text-primary fill-primary/10"
-                    />
-                  </div>
-                  <div className="flex items-center mt-12">
-                    <div className="text-2xl font-medium">124,625</div>
-                    <div className="flex items-center ml-3.5 border border-danger/50 bg-danger/70 rounded-full pl-[7px] pr-1 py-[2px] text-xs font-medium text-white/90">
-                      3%
-                      <Lucide
-                        icon="ChevronDown"
-                        className="w-4 h-4 ml-px stroke-[1.5]"
-                      />
+                    <div className="flex flex-col gap-1 mt-1 text-lg font-bold">
+                      <div>Transfer latest & Euro 2022 reaction - England reach semi-finals</div>
+                     
                     </div>
                   </div>
-                  <div className="mt-1 text-base text-slate-500">
-                    Lead Generation
-                  </div>
-                  <Menu className="absolute top-0 right-0 mt-5 mr-5">
-                    <Menu.Button className="w-5 h-5 text-slate-500">
-                      <Lucide
-                        icon="MoreVertical"
-                        className="w-6 h-6 stroke-slate-400/70 fill-slate-400/70"
-                      />
-                    </Menu.Button>
-                    <Menu.Items className="w-40">
-                      <Menu.Item>
-                        <Lucide icon="Copy" className="w-4 h-4 mr-2" /> Copy
-                        Link
-                      </Menu.Item>
-                      <Menu.Item>
-                        <Lucide icon="Trash" className="w-4 h-4 mr-2" />
-                        Delete
-                      </Menu.Item>
-                    </Menu.Items>
-                  </Menu>
-                </div>
-                <div className="col-span-4 sm:col-span-2 xl:col-span-1 flex-1 p-5 border relative rounded-[0.6rem] bg-slate-50/50 overflow-hidden">
-                  <div className="flex items-center justify-center w-12 h-12 border rounded-full border-info/10 bg-info/10">
-                    <Lucide
-                      icon="Box"
-                      className="w-6 h-6 text-info fill-info/10"
-                    />
-                  </div>
-                  <div className="flex items-center mt-12">
-                    <div className="text-2xl font-medium">749,220</div>
-                    <div className="flex items-center ml-3.5 border border-success/50 bg-success/70 rounded-full pl-[7px] pr-1 py-[2px] text-xs font-medium text-white/90">
-                      4%
-                      <Lucide
-                        icon="ChevronUp"
-                        className="w-4 h-4 ml-px stroke-[1.5]"
-                      />
-                    </div>
-                  </div>
-                  <div className="mt-1 text-base text-slate-500">
-                    Support Tickets
-                  </div>
-                  <Menu className="absolute top-0 right-0 mt-5 mr-5">
-                    <Menu.Button className="w-5 h-5 text-slate-500">
-                      <Lucide
-                        icon="MoreVertical"
-                        className="w-6 h-6 stroke-slate-400/70 fill-slate-400/70"
-                      />
-                    </Menu.Button>
-                    <Menu.Items className="w-40">
-                      <Menu.Item>
-                        <Lucide icon="Copy" className="w-4 h-4 mr-2" /> Copy
-                        Link
-                      </Menu.Item>
-                      <Menu.Item>
-                        <Lucide icon="Trash" className="w-4 h-4 mr-2" />
-                        Delete
-                      </Menu.Item>
-                    </Menu.Items>
-                  </Menu>
-                </div>
-                <div className="col-span-4 sm:col-span-2 xl:col-span-1 flex-1 p-5 border relative rounded-[0.6rem] bg-slate-50/50 overflow-hidden">
-                  <div className="flex items-center justify-center w-12 h-12 border rounded-full border-primary/10 bg-primary/10">
-                    <Lucide
-                      icon="PanelsTopLeft"
-                      className="w-6 h-6 text-primary fill-primary/10"
-                    />
-                  </div>
-                  <div className="flex items-center mt-12">
-                    <div className="text-2xl font-medium">273,235</div>
-                    <div className="flex items-center ml-3.5 border border-success/50 bg-success/70 rounded-full pl-[7px] pr-1 py-[2px] text-xs font-medium text-white/90">
-                      9%
-                      <Lucide
-                        icon="ChevronUp"
-                        className="w-4 h-4 ml-px stroke-[1.5]"
-                      />
-                    </div>
-                  </div>
-                  <div className="mt-1 text-base text-slate-500">
-                    Pipeline Management
-                  </div>
-                  <Menu className="absolute top-0 right-0 mt-5 mr-5">
-                    <Menu.Button className="w-5 h-5 text-slate-500">
-                      <Lucide
-                        icon="MoreVertical"
-                        className="w-6 h-6 stroke-slate-400/70 fill-slate-400/70"
-                      />
-                    </Menu.Button>
-                    <Menu.Items className="w-40">
-                      <Menu.Item>
-                        <Lucide icon="Copy" className="w-4 h-4 mr-2" /> Copy
-                        Link
-                      </Menu.Item>
-                      <Menu.Item>
-                        <Lucide icon="Trash" className="w-4 h-4 mr-2" />
-                        Delete
-                      </Menu.Item>
-                    </Menu.Items>
-                  </Menu>
                 </div>
               </div>
-              <a
-                href=""
-                className="bg-slate-50 xl:w-20 text-slate-400/80 flex flex-col justify-center items-center p-5 border border-slate-300/80 rounded-[0.6rem] hover:bg-slate-50 border-dashed [&:hover_svg]:rotate-180"
-              >
-                <Lucide
-                  icon="PlusSquare"
-                  className="w-6 h-6 transition-transform transform"
-                />
-              </a>
-            </Tab.Panel>
-            <Tab.Panel className="p-5 leading-relaxed"></Tab.Panel>
-            <Tab.Panel className="p-5 leading-relaxed"></Tab.Panel>
-          </Tab.Panels>
-        </Tab.Group>
+            </div>
+          </div>
+        </div>
       </div>
       <div className="flex flex-col col-span-12 xl:col-span-6 gap-y-10">
         <div>

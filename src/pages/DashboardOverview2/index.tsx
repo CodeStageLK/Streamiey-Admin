@@ -10,7 +10,16 @@ import { Tab } from "@/components/Base/Headless";
 import _ from "lodash";
 import LoadingIcon from "@/components/Base/LoadingIcon";
 import mountainImage from "@/assets/images/miscellaneous/cheer.png";
+import Pagination from "@/components/Base/Pagination";
+import transactions from "@/fakers/transactions";
+import Litepicker from "@/components/Base/Litepicker";
+import Table from "@/components/Base/Table";
+import { useState, useRef } from "react";
+import clsx from "clsx";
+
 function Main() {
+  const [generalReportFilter, setGeneralReportFilter] = useState<string>();
+
   return (
     <div className="grid grid-cols-12 gap-y-10 gap-x-6">
       <div className="col-span-12">
@@ -19,17 +28,11 @@ function Main() {
             Event live right now
           </div>
           <div className="text-base font-medium group-[.mode--light]:text-white">
-          <Button variant="primary" className="w-32">
-                  <Lucide
-                    icon="Plus"
-                    className="w-4 h-4 mr-2"
-                  />{" "}
-                   Event
-                </Button>
+            <Button variant="primary" className="w-32">
+              <Lucide icon="Plus" className="w-4 h-4 mr-2" /> Event
+            </Button>
           </div>
-          
         </div>
-        
 
         <div className="mt-3.5 grid grid-cols-12 gap-y-10 gap-x-6">
           <div className="col-span-12 xl:col-span-12 p-1 box box--stacked">
@@ -59,8 +62,10 @@ function Main() {
                       Sunday, 20th June 2022
                     </div>
                     <div className="flex flex-col gap-1 mt-1 text-lg font-bold">
-                      <div>Transfer latest & Euro 2022 reaction - England reach semi-finals</div>
-                     
+                      <div>
+                        Transfer latest & Euro 2022 reaction - England reach
+                        semi-finals
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -69,7 +74,7 @@ function Main() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col col-span-12 xl:col-span-6 gap-y-10">
+      {/* <div className="flex flex-col col-span-12 xl:col-span-6 gap-y-10">
         <div>
           <div className="flex flex-col md:h-10 gap-y-3 md:items-center md:flex-row">
             <div className="text-base font-medium">Contact Details</div>
@@ -377,6 +382,173 @@ function Main() {
               </div>
             </div>
           </div>
+        </div>
+      </div> */}
+
+      <div className="col-span-12">
+        <div className="flex flex-col md:h-10 gap-y-3 md:items-center md:flex-row">
+          <div className="text-base font-medium">Upcoming Events</div>
+        </div>
+        <div className="mt-2 overflow-auto lg:overflow-visible">
+          <Table className="border-spacing-y-[10px] border-separate">
+            <Table.Tbody>
+              {_.take(transactions.fakeTransactions(), 5).map(
+                (faker, fakerKey) => (
+                  <Table.Tr key={fakerKey}>
+                    <Table.Td className="box shadow-[5px_3px_5px_#00000005] first:border-l last:border-r first:rounded-l-[0.6rem] last:rounded-r-[0.6rem] rounded-l-none rounded-r-none border-x-0 dark:bg-darkmode-600">
+                      <div className="flex items-center">
+                        <Lucide
+                          icon={faker.category.icon}
+                          className="w-6 h-6 text-theme-1 fill-primary/10 stroke-[0.8]"
+                        />
+                        <div className="ml-3.5">
+                          <a href="" className="font-medium whitespace-nowrap">
+                            {faker.orderId}
+                          </a>
+                          <div className="mt-1 text-xs text-slate-500 whitespace-nowrap">
+                            {faker.category.name}
+                          </div>
+                        </div>
+                      </div>
+                    </Table.Td>
+                    <Table.Td className="w-60 box shadow-[5px_3px_5px_#00000005] first:border-l last:border-r first:rounded-l-[0.6rem] last:rounded-r-[0.6rem] rounded-l-none rounded-r-none border-x-0 dark:bg-darkmode-600">
+                      <div className="mb-1 text-xs text-slate-500 whitespace-nowrap">
+                        Created on
+                      </div>
+                      <div className="ml-1.5 whitespace-nowrap text-primary">
+                        {faker.user.joinedDate}
+                      </div>
+                    </Table.Td>
+                    <Table.Td className="w-44 box shadow-[5px_3px_5px_#00000005] first:border-l last:border-r first:rounded-l-[0.6rem] last:rounded-r-[0.6rem] rounded-l-none rounded-r-none border-x-0 dark:bg-darkmode-600">
+                      <div className="mb-1.5 text-xs text-slate-500 whitespace-nowrap">
+                        Scheduled
+                      </div>
+                      <div className="ml-1.5 whitespace-nowrap text-primary">
+                        {faker.user.Scheduled}
+                      </div>
+                      {/* <div className="flex mb-1">
+                        <div className="w-5 h-5 image-fit zoom-in">
+                          <Tippy
+                            as="img"
+                            alt="Tailwise - Admin Dashboard Template"
+                            className="rounded-full shadow-[0px_0px_0px_2px_#fff,_1px_1px_5px_rgba(0,0,0,0.32)] dark:shadow-[0px_0px_0px_2px_#3f4865,_1px_1px_5px_rgba(0,0,0,0.32)]"
+                            src={faker.products[0].images[0].path}
+                            content={faker.products[0].name}
+                          />
+                        </div>
+                        <div className="w-5 h-5 -ml-1.5 image-fit zoom-in">
+                          <Tippy
+                            as="img"
+                            alt="Tailwise - Admin Dashboard Template"
+                            className="rounded-full shadow-[0px_0px_0px_2px_#fff,_1px_1px_5px_rgba(0,0,0,0.32)] dark:shadow-[0px_0px_0px_2px_#3f4865,_1px_1px_5px_rgba(0,0,0,0.32)]"
+                            src={faker.products[1].images[0].path}
+                            content={faker.products[1].name}
+                          />
+                        </div>
+                        <div className="w-5 h-5 -ml-1.5 image-fit zoom-in">
+                          <Tippy
+                            as="img"
+                            alt="Tailwise - Admin Dashboard Template"
+                            className="rounded-full shadow-[0px_0px_0px_2px_#fff,_1px_1px_5px_rgba(0,0,0,0.32)] dark:shadow-[0px_0px_0px_2px_#3f4865,_1px_1px_5px_rgba(0,0,0,0.32)]"
+                            src={faker.products[2].images[0].path}
+                            content={faker.products[2].name}
+                          />
+                        </div>
+                      </div> */}
+                    </Table.Td>
+                    <Table.Td className="w-44 box shadow-[5px_3px_5px_#00000005] first:border-l last:border-r first:rounded-l-[0.6rem] last:rounded-r-[0.6rem] rounded-l-none rounded-r-none border-x-0 dark:bg-darkmode-600">
+                      <div className="mb-1 text-xs text-slate-500 whitespace-nowrap"></div>
+                      <div>
+                        <Button
+                          variant="danger"
+                          elevated
+                          rounded
+                          className="w-40"
+                        >
+                          <LoadingIcon
+                            icon="puff"
+                            color="white"
+                            className="w-4 h-4 mr-2"
+                          />
+                          Go live now
+                        </Button>
+                      </div>
+                      {/* <div
+                        className={clsx([
+                          "flex items-center",
+                          faker.orderStatus.textColor,
+                        ])}
+                      >
+                        <Lucide
+                          icon={faker.orderStatus.icon}
+                          className="w-3.5 h-3.5 stroke-[1.7]"
+                        />
+                        <div className="ml-1.5 whitespace-nowrap">
+                          {faker.orderStatus.name}
+                        </div>
+                      </div> */}
+                    </Table.Td>
+                    <Table.Td className="w-20 relative py-0 box shadow-[5px_3px_5px_#00000005] first:border-l last:border-r first:rounded-l-[0.6rem] last:rounded-r-[0.6rem] rounded-l-none rounded-r-none border-x-0 dark:bg-darkmode-600">
+                      <div className="flex items-center justify-center">
+                        <Menu className="h-5">
+                          <Menu.Button className="w-5 h-5 text-slate-500">
+                            <Lucide
+                              icon="MoreVertical"
+                              className="w-5 h-5 stroke-slate-400/70 fill-slate-400/70"
+                            />
+                          </Menu.Button>
+                          <Menu.Items className="w-40">
+                            <Menu.Item>
+                              <Lucide
+                                icon="WalletCards"
+                                className="w-4 h-4 mr-2"
+                              />{" "}
+                              View Details
+                            </Menu.Item>
+                            <Menu.Item>
+                              <Lucide icon="FilePen" className="w-4 h-4 mr-2" />
+                              Edit Order
+                            </Menu.Item>
+                            <Menu.Item>
+                              <Lucide icon="Printer" className="w-4 h-4 mr-2" />
+                              Print Invoice
+                            </Menu.Item>
+                          </Menu.Items>
+                        </Menu>
+                      </div>
+                    </Table.Td>
+                  </Table.Tr>
+                )
+              )}
+            </Table.Tbody>
+          </Table>
+        </div>
+        <div className="flex flex-col-reverse flex-wrap items-center mt-3 flex-reverse gap-y-2 sm:flex-row">
+          <Pagination className="flex-1 w-full mr-auto sm:w-auto">
+            <Pagination.Link>
+              <Lucide icon="ChevronsLeft" className="w-4 h-4" />
+            </Pagination.Link>
+            <Pagination.Link>
+              <Lucide icon="ChevronLeft" className="w-4 h-4" />
+            </Pagination.Link>
+            <Pagination.Link>...</Pagination.Link>
+            <Pagination.Link>1</Pagination.Link>
+            <Pagination.Link active>2</Pagination.Link>
+            <Pagination.Link>3</Pagination.Link>
+            <Pagination.Link>...</Pagination.Link>
+            <Pagination.Link>
+              <Lucide icon="ChevronRight" className="w-4 h-4" />
+            </Pagination.Link>
+            <Pagination.Link>
+              <Lucide icon="ChevronsRight" className="w-4 h-4" />
+            </Pagination.Link>
+          </Pagination>
+          <FormSelect className="sm:w-20 rounded-[0.5rem]">
+            <option>10</option>
+            <option>25</option>
+            <option>35</option>
+            <option>50</option>
+          </FormSelect>
         </div>
       </div>
     </div>

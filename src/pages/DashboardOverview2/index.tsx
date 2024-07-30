@@ -669,16 +669,16 @@ function Main() {
           <div className="text-lg font-medium">All Events</div>
         </div>
         <div className="overflow-hidden">
-              <div className="grid grid-cols-12 -mx-5 border-dashed border-y">
+              <div className="grid grid-cols-12 -mx-5  ">
                 {_.take(transactions.fakeTransactions(), 4).map((faker, fakerKey) => (
                   <div
                     key={fakerKey}
-                    className="col-span-12 sm:col-span-6 xl:col-span-3 border-dashed border-slate-300/80 [&:nth-child(4n)]:border-r-0 px-5 py-5 [&:nth-last-child(-n+4)]:border-b-0 border-r border-b flex flex-col"
+                    className="col-span-12 sm:col-span-6 xl:col-span-3 px-5 py-5 flex flex-col"
                   >
-                    <div className="overflow-hidden rounded-lg h-80 image-fit before:block before:absolute before:w-full before:h-full before:top-0 before:left-0 before:z-10 before:bg-gradient-to-t before:from-slate-900/90 before:to-black/20">
+                    <div className="overflow-hidden rounded-xl h-96 image-fit before:block before:absolute before:w-full before:h-full before:top-0 before:left-0 before:z-10 before:bg-gradient-to-t before:from-slate-900/90 before:to-black/20">
                       <img
                         alt="event thumbnail"
-                        className="rounded-md"
+                        className="rounded-xl p-1"
                         src={faker.products[0].images[0].path}
                       />
   

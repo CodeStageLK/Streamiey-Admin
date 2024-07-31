@@ -380,13 +380,12 @@ function Main() {
                 </a>
               </div>
               {/* BEGIN: Breadcrumb */}
-              <Breadcrumb light className="flex-1 hidden xl:block">
-                {/* <Breadcrumb.Link to="/">App</Breadcrumb.Link> */}
-                <Breadcrumb.Link to="/">Dashboard</Breadcrumb.Link>
+              <div className="flex-1 hidden xl:block">
+                {/* <Breadcrumb.Link to="/">Dashboard</Breadcrumb.Link>
                 <Breadcrumb.Link to="/" active={true}>
                   Analytics
-                </Breadcrumb.Link>
-              </Breadcrumb>
+                </Breadcrumb.Link> */}
+              </div>
               {/* END: Breadcrumb */}
               {/* BEGIN: Search */}
               <div

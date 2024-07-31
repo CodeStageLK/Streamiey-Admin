@@ -19,14 +19,14 @@ function Main() {
   const navigate = useNavigate();
   
   const gotoDetails = ()=>{
-    navigate("/transaction-detail");
+    navigate("/transactions/transaction-detail");
   }
 
   return (
     <div className="grid grid-cols-12 gap-y-10 gap-x-6">
       <div className="col-span-12">
         <div className="flex flex-col md:h-10 gap-y-3 md:items-center md:flex-row">
-          <div className="text-base font-medium group-[.mode--light]:text-white">
+          <div className="text-lg font-medium group-[.mode--light]:text-white">
             Transactions
           </div>
           <div className="flex flex-col sm:flex-row gap-x-3 gap-y-2 md:ml-auto">
@@ -202,11 +202,12 @@ function Main() {
                       <Table.Tr
                         key={fakerKey}
                         className="[&_td]:last:border-b-0"
+                        onClick={gotoDetails}
                       >
                         <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
                           <FormCheck.Input type="checkbox" />
                         </Table.Td>
-                        <Table.Td className="py-4 border-dashed w-44 dark:bg-darkmode-600" onClick={gotoDetails}>
+                        <Table.Td className="py-4 border-dashed w-44 dark:bg-darkmode-600 cursor-pointer" >
                           <div className="flex items-center" >
                             <div className="w-9 h-9 image-fit zoom-in">
                               <Tippy

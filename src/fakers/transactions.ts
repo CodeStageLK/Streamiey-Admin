@@ -27,32 +27,26 @@ const fakers = {
         category: categories.fakeCategories()[0],
         orderId: (() => {
           const romanNumerals = [
-            "I",
-            "II",
-            "III",
-            "IV",
-            "V",
-            "VI",
-            "VII",
-            "VIII",
-            "IX",
-            "X",
+            "County Championship day three...",
+            "FORMULA 1 PRE-SEASON TRACK S...",
+            "2022 MEN'S INTERNATIONAL",
+            "BahrainFORMULA 1 GULF AIR BAHRAIN GR...",
+            "RUGBY AFRICA CUP 2022",
+            "County Championship day three...",
+            "FORMULA 1 PRE-SEASON TRACK S...",
+            "2022 MEN'S INTERNATIONAL",
+            "BahrainFORMULA 1 GULF AIR BAHRAIN GR...",
+            "RUGBY AFRICA CUP 2022",
+            "County Championship day three...",
+            "FORMULA 1 PRE-SEASON TRACK S...",
+            "2022 MEN'S INTERNATIONAL",
+            "BahrainFORMULA 1 GULF AIR BAHRAIN GR...",
+            "RUGBY AFRICA CUP 2022",
           ];
-          const date = new Date();
-          const [year, month, day] = [
-            date.getFullYear(),
-            date.getMonth() + 1,
-            date.getDate(),
-          ];
-          const [randRoman1, randRoman2, randNumber] = [
-            romanNumerals[Math.floor(Math.random() * 10)],
-            romanNumerals[Math.floor(Math.random() * 10)],
-            Math.floor(Math.random() * 10e9),
-          ];
-          return `IVR/${year}${month.toString().padStart(2, "0")}${day
-            .toString()
-            .padStart(2, "0")}/${randRoman1}/${randRoman2}/${randNumber}`;
+          const [randRoman2] = [romanNumerals[Math.floor(Math.random() * 10)]];
+          return `${randRoman2}`;
         })(),
+        // orderId: users.fakeUsers()[0],
         user: users.fakeUsers()[0],
         products: products.fakeProducts(),
         orderStatus: transactionStatus.fakeTransactionStatus()[0],

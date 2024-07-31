@@ -15,6 +15,7 @@ import Settings from "../pages/Settings";
 import Billing from "../pages/Billing";
 import Invoice from "../pages/Invoice";
 import Categories from "../pages/Categories";
+import AddCategory from "../pages/AddEventCategory";
 import AddProduct from "../pages/AddProduct";
 import ProductList from "../pages/ProductList";
 import ProductGrid from "../pages/ProductGrid";
@@ -59,6 +60,7 @@ import Chart from "../pages/Chart";
 import Slider from "../pages/Slider";
 import ImageZoom from "../pages/ImageZoom";
 import LandingPage from "../pages/LandingPage";
+import AddEvent from "../pages/AddEvent";
 
 import Layout from "../themes";
 
@@ -73,7 +75,7 @@ function Router() {
           element: <DashboardOverview1 />,
         },
         {
-          path: "dashboard-overview-2",
+          path: "events",
           element: <DashboardOverview2 />,
         },
         {
@@ -129,8 +131,16 @@ function Router() {
           element: <Invoice />,
         },
         {
+          path: "events/add-event",
+          element: <AddEvent />,
+        },
+        {
           path: "categories",
           element: <Categories />,
+        },
+        {
+          path: "categories/add-category",
+          element: <AddCategory />,
         },
         {
           path: "add-product",
@@ -145,11 +155,11 @@ function Router() {
           element: <ProductGrid />,
         },
         {
-          path: "transaction-list",
+          path: "transactions",
           element: <TransactionList />,
         },
         {
-          path: "transaction-detail",
+          path: "transactions/transaction-detail",
           element: <TransactionDetail />,
         },
         {

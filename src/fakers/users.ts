@@ -9,6 +9,7 @@ export interface User {
   department: string;
   location: string;
   joinedDate: string;
+  Scheduled: string;
   manager: string;
   addressLine1: string;
   addressLine2: string;
@@ -31,6 +32,7 @@ const fakers = {
         department: "Sales Department",
         location: "New York, USA",
         joinedDate: "January 15, 2010",
+        Scheduled: "Feb 5, 2010",
         manager: "John Smith",
         addressLine1: "123 Main Street",
         addressLine2: "Suite 456",
@@ -45,6 +47,7 @@ const fakers = {
         department: "Marketing Department",
         location: "Los Angeles, USA",
         joinedDate: "March 22, 2015",
+        Scheduled: "Feb 5, 2010",
         manager: "Alice Johnson",
         addressLine1: "456 Elm Avenue",
         addressLine2: "Floor 3B",
@@ -59,6 +62,7 @@ const fakers = {
         department: "Support Team",
         location: "Chicago, USA",
         joinedDate: "May 5, 2018",
+        Scheduled: "Feb 5, 2010",
         manager: "Emily Davis",
         addressLine1: "789 Oak Street",
         addressLine2: "Apt 102",
@@ -73,6 +77,7 @@ const fakers = {
         department: "Account Management",
         location: "San Francisco, USA",
         joinedDate: "July 10, 2012",
+        Scheduled: "Feb 5, 2010",
         manager: "Michael Brown",
         addressLine1: "567 Pine Road",
         addressLine2: "Suite 200",
@@ -87,6 +92,7 @@ const fakers = {
         department: "Data Analytics",
         location: "Seattle, USA",
         joinedDate: "September 3, 2016",
+        Scheduled: "Feb 5, 2010",
         manager: "Sarah Wilson",
         addressLine1: "890 Cedar Avenue",
         addressLine2: "Unit 501",
@@ -101,6 +107,7 @@ const fakers = {
         department: "CRM Team",
         location: "Miami, USA",
         joinedDate: "February 18, 2019",
+        Scheduled: "Feb 5, 2010",
         manager: "David Miller",
         addressLine1: "234 Birch Street",
         addressLine2: "Apt 301",
@@ -115,6 +122,7 @@ const fakers = {
         department: "Product Management",
         location: "Denver, USA",
         joinedDate: "October 7, 2013",
+        Scheduled: "Feb 5, 2010",
         manager: "Linda White",
         addressLine1: "345 Willow Avenue",
         addressLine2: "Suite 401",
@@ -129,6 +137,7 @@ const fakers = {
         department: "Project Management",
         location: "Houston, USA",
         joinedDate: "June 12, 2017",
+        Scheduled: "Feb 5, 2010",
         manager: "Robert Green",
         addressLine1: "678 Maple Road",
         addressLine2: "Floor 2A",
@@ -143,6 +152,7 @@ const fakers = {
         department: "Human Resources",
         location: "Atlanta, USA",
         joinedDate: "April 25, 2011",
+        Scheduled: "Feb 5, 2010",
         manager: "Susan Taylor",
         addressLine1: "901 Pine Street",
         addressLine2: "Floor 4C",
@@ -157,6 +167,7 @@ const fakers = {
         department: "Engineering",
         location: "Austin, USA",
         joinedDate: "August 9, 2014",
+        Scheduled: "Feb 5, 2010",
         manager: "Michael Scott",
         addressLine1: "123 Oak Avenue",
         addressLine2: "Suite 601",

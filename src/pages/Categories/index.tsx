@@ -8,19 +8,27 @@ import { formatCurrency } from "@/utils/helper";
 import Table from "@/components/Base/Table";
 import clsx from "clsx";
 import _ from "lodash";
+import { useNavigate } from "react-router-dom";
 
 function Main() {
+  const navigate = useNavigate();
+  
+  const gotoForm = ()=>{
+    navigate("/categories/add-category");
+  }
+
   return (
     <div className="grid grid-cols-12 gap-y-10 gap-x-6">
       <div className="col-span-12">
         <div className="flex flex-col md:h-10 gap-y-3 md:items-center md:flex-row">
-          <div className="text-base font-medium group-[.mode--light]:text-white">
+          <div className="text-lg font-medium group-[.mode--light]:text-white">
             Categories
           </div>
           <div className="flex flex-col sm:flex-row gap-x-3 gap-y-2 md:ml-auto">
             <Button
               variant="primary"
               className="group-[.mode--light]:!bg-white/[0.12] group-[.mode--light]:!text-slate-200 group-[.mode--light]:!border-transparent"
+              onClick={gotoForm}
             >
               <Lucide icon="PenLine" className="stroke-[1.3] w-4 h-4 mr-2" />{" "}
               Add New Category

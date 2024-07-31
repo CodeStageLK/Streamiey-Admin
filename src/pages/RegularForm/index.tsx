@@ -129,58 +129,6 @@ function Main() {
                               />
                             </div>
                           </Preview>
-                          <Source>
-                            <Highlight>
-                              {`
-                <div>
-                  <FormLabel htmlFor="regular-form-1">Input Text</FormLabel>
-                  <FormInput
-                    id="regular-form-1"
-                    type="text"
-                    placeholder="Input text"
-                  />
-                </div>
-                <div className="mt-3">
-                  <FormLabel htmlFor="regular-form-2">Rounded</FormLabel>
-                  <FormInput
-                    id="regular-form-2"
-                    type="text"
-                    rounded
-                    placeholder="Rounded"
-                  />
-                </div>
-                <div className="mt-3">
-                  <FormLabel htmlFor="regular-form-3">With Help</FormLabel>
-                  <FormInput
-                    id="regular-form-3"
-                    type="text"
-                    placeholder="With help"
-                  />
-                  <FormHelp>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry.
-                  </FormHelp>
-                </div>
-                <div className="mt-3">
-                  <FormLabel htmlFor="regular-form-4">Password</FormLabel>
-                  <FormInput
-                    id="regular-form-4"
-                    type="password"
-                    placeholder="Password"
-                  />
-                </div>
-                <div className="mt-3">
-                  <FormLabel htmlFor="regular-form-5">Disabled</FormLabel>
-                  <FormInput
-                    id="regular-form-5"
-                    type="text"
-                    placeholder="Disabled"
-                    disabled
-                  />
-                </div>
-                `}
-                            </Highlight>
-                          </Source>
                         </div>
                       </div>
                       <p className="leading-relaxed">

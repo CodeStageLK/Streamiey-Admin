@@ -53,18 +53,18 @@ function Main({
           pointBorderColor: "transparent",
           tension: 0.4,
         },
-        {
-          label: "VueJs Template",
-          data: [0, 300, 400, 560, 320, 600, 720, 850, 690, 805, 1200, 1010],
-          borderWidth: 2,
-          borderDash: [2, 2],
-          borderColor: darkMode
-            ? getColor("slate.400", 0.6)
-            : getColor("slate.400"),
-          backgroundColor: "transparent",
-          pointBorderColor: "transparent",
-          tension: 0.4,
-        },
+        // {
+        //   label: "VueJs Template",
+        //   data: [0, 300, 400, 560, 320, 600, 720, 850, 690, 805, 1200, 1010],
+        //   borderWidth: 2,
+        //   borderDash: [2, 2],
+        //   borderColor: darkMode
+        //     ? getColor("slate.400", 0.6)
+        //     : getColor("slate.400"),
+        //   backgroundColor: "transparent",
+        //   pointBorderColor: "transparent",
+        //   tension: 0.4,
+        // },
       ],
     };
   }, [colorScheme, darkMode]);

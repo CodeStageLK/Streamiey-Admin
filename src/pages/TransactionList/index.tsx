@@ -180,7 +180,13 @@ function Main() {
                       Customer Name
                     </Table.Td>
                     <Table.Td className="py-4 font-medium border-t bg-slate-50 border-slate-200/60 text-slate-500">
-                      Transaction ID
+                      Event
+                    </Table.Td>
+                    <Table.Td className="py-4 font-medium border-t bg-slate-50 border-slate-200/60 text-slate-500">
+                      Order Number
+                    </Table.Td>
+                    <Table.Td className="py-4 font-medium border-t bg-slate-50 border-slate-200/60 text-slate-500">
+                      Ticket
                     </Table.Td>
                     <Table.Td className="py-4 font-medium border-t bg-slate-50 border-slate-200/60 text-slate-500">
                       Status
@@ -190,10 +196,7 @@ function Main() {
                     </Table.Td>
                     <Table.Td className="py-4 font-medium border-t bg-slate-50 border-slate-200/60 text-slate-500">
                       Date
-                    </Table.Td>
-                    <Table.Td className="py-4 font-medium text-center border-t w-36 bg-slate-50 border-slate-200/60 text-slate-500">
-                      Action
-                    </Table.Td>
+                    </Table.Td>                  
                   </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
@@ -225,12 +228,6 @@ function Main() {
                               >
                                 {faker.user.name}
                               </a>
-                              <div className="flex text-slate-500 text-xs whitespace-nowrap mt-0.5">
-                                Product:
-                                <a href="" className="block ml-1 truncate w-44">
-                                  Purchased: {_.random(2, 10)} Items
-                                </a>
-                              </div>
                             </div>
                           </div>
                         </Table.Td>
@@ -244,6 +241,43 @@ function Main() {
                               {faker.orderId}
                             </div>
                           </a>
+                        </Table.Td>
+                        <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
+                          <div className="whitespace-nowrap">
+                          {_.random(1000000, 9000000)}
+                          </div>
+                        </Table.Td>
+                        <Table.Td className="relative py-4 border-dashed dark:bg-darkmode-600">
+                          {/* <div className="flex items-center justify-center">
+                            <Menu className="h-5">
+                              <Menu.Button className="w-5 h-5 text-slate-500">
+                                <Lucide
+                                  icon="MoreVertical"
+                                  className="w-5 h-5 stroke-slate-400/70 fill-slate-400/70"
+                                />
+                              </Menu.Button>
+                              <Menu.Items className="w-40">
+                                <Menu.Item
+                                 onClick={gotoDetails}>
+                                  <Lucide
+                                    icon="CheckSquare"
+                                    className="w-4 h-4 mr-2"
+                                  />{" "}
+                                  Go to Details
+                                </Menu.Item>
+                                <Menu.Item className="text-danger">
+                                  <Lucide
+                                    icon="Trash2"
+                                    className="w-4 h-4 mr-2"
+                                  />
+                                  Delete
+                                </Menu.Item>
+                              </Menu.Items>
+                            </Menu>
+                          </div> */}
+                           <div className="whitespace-nowrap">
+                          {_.random(1000000, 9000000)}
+                          </div>
                         </Table.Td>
                         <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
                           <div
@@ -263,7 +297,7 @@ function Main() {
                         </Table.Td>
                         <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
                           <div className="whitespace-nowrap">
-                            ${faker.amount}
+                            ${_.random(1000, 900)}.00
                           </div>
                         </Table.Td>
                         <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
@@ -271,34 +305,7 @@ function Main() {
                             {faker.orderDate}
                           </div>
                         </Table.Td>
-                        <Table.Td className="relative py-4 border-dashed dark:bg-darkmode-600">
-                          <div className="flex items-center justify-center">
-                            <Menu className="h-5">
-                              <Menu.Button className="w-5 h-5 text-slate-500">
-                                <Lucide
-                                  icon="MoreVertical"
-                                  className="w-5 h-5 stroke-slate-400/70 fill-slate-400/70"
-                                />
-                              </Menu.Button>
-                              <Menu.Items className="w-40">
-                                <Menu.Item>
-                                  <Lucide
-                                    icon="CheckSquare"
-                                    className="w-4 h-4 mr-2"
-                                  />{" "}
-                                  Edit
-                                </Menu.Item>
-                                <Menu.Item className="text-danger">
-                                  <Lucide
-                                    icon="Trash2"
-                                    className="w-4 h-4 mr-2"
-                                  />
-                                  Delete
-                                </Menu.Item>
-                              </Menu.Items>
-                            </Menu>
-                          </div>
-                        </Table.Td>
+                        
                       </Table.Tr>
                     )
                   )}

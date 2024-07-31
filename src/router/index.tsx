@@ -63,6 +63,8 @@ import LandingPage from "../pages/LandingPage";
 import AddEvent from "../pages/AddEvent";
 
 import Layout from "../themes";
+import AllEvents from "@/pages/AllEvents";
+import SingleEvent from "@/pages/SingleEvent";
 
 function Router() {
   const routes = [
@@ -133,6 +135,14 @@ function Router() {
         {
           path: "events/add-event",
           element: <AddEvent />,
+        },
+        {
+          path: "events/event1",
+          element: <SingleEvent />,
+        },
+        {
+          path: "events/all-events",
+          element: <AllEvents />,
         },
         {
           path: "categories",

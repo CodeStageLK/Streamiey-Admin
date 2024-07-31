@@ -173,9 +173,9 @@ function Main() {
               <Table className="border-b border-slate-200/60">
                 <Table.Thead>
                   <Table.Tr>
-                    <Table.Td className="w-5 py-4 font-medium border-t bg-slate-50 border-slate-200/60 text-slate-500">
+                    {/* <Table.Td className="w-5 py-4 font-medium border-t bg-slate-50 border-slate-200/60 text-slate-500">
                       <FormCheck.Input type="checkbox" />
-                    </Table.Td>
+                    </Table.Td> */}
                     <Table.Td className="py-4 font-medium border-t bg-slate-50 border-slate-200/60 text-slate-500">
                       Customer Name
                     </Table.Td>
@@ -207,9 +207,9 @@ function Main() {
                         className="[&_td]:last:border-b-0"
                         onClick={gotoDetails}
                       >
-                        <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
+                        {/* <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
                           <FormCheck.Input type="checkbox" />
-                        </Table.Td>
+                        </Table.Td> */}
                         <Table.Td className="py-4 border-dashed w-44 dark:bg-darkmode-600 cursor-pointer" >
                           <div className="flex items-center" >
                             <div className="w-9 h-9 image-fit zoom-in">

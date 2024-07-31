@@ -58,7 +58,7 @@ function Main() {
         </div>
         <div className="grid grid-cols-10 gap-5 mt-3.5">
           <div className="col-span-12 xl:col-span-3">
-            <div className="flex flex-col p-5 box box--stacked">
+            <div className="flex flex-col p-5 box">
               <div className="flex flex-col gap-5">
                 <div className="border rounded-[0.6rem] border-slate-200/80 dark:border-darkmode-400 relative mt-3">
                   <div className="absolute left-0 px-3 ml-4 -mt-2 text-xs uppercase bg-white text-slate-500">
@@ -150,6 +150,15 @@ function Main() {
                         {transactions.fakeTransactions()[0].amount}
                       </div>
                     </div>
+                    <div className="mt-1.5">
+                      <Button className="w-full border-primary/20 text-primary/80 hover:bg-slate-50">
+                        <Lucide
+                          icon="CreditCard"
+                          className="stroke-[1.3] w-4 h-4 mr-2"
+                        />{" "}
+                       Refund request
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -168,7 +177,7 @@ function Main() {
                         <Table.Tr>
                           <Table.Td className="px-0 py-0 [&_div]:first:border-l [&_div]:last:border-r [&_div]:first:rounded-l-md [&_div]:last:rounded-r-md border-b-0">
                             <div className="px-5 py-4 font-medium bg-slate-50 border-slate-200/80 text-slate-500 border-y">
-                              Item
+                              Event Title
                             </div>
                           </Table.Td>
                           <Table.Td className="px-0 py-0 [&_div]:first:border-l [&_div]:last:border-r [&_div]:first:rounded-l-md [&_div]:last:rounded-r-md border-b-0">
@@ -228,9 +237,9 @@ function Main() {
                       type specimen book.
                     </div>
                     <div className="sm:w-1/2 my-3.5 p-1 border rounded-[0.6rem] bg-slate-50/80">
-                      <div className="grid grid-cols-1 md:grid-cols-3 overflow-hidden rounded-[0.6rem]">
-                        <div className="h-40 overflow-hidden border image-fit border-slate-100 saturate-[.6] hover:saturate-100 cursor-pointer">
-                          <ImageZoom
+                      <div className="overflow-hidden rounded-[0.6rem]">
+                        <div className="h-52 overflow-hidden border image-fit border-slate-100 saturate-[.6] hover:saturate-100 cursor-pointer">
+                          <img
                             alt="Tailwise - Admin Dashboard Template"
                             src={
                               transactions.fakeTransactions()[0].products[0]

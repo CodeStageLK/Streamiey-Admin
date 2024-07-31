@@ -66,11 +66,17 @@ import Layout from "../themes";
 import AllEvents from "@/pages/AllEvents";
 import SingleEvent from "@/pages/SingleEvent";
 
+import { AuthProvider } from '../authContext';
+import PrivateRoute from '../PrivateRoute';
 function Router() {
   const routes = [
     {
-      path: "/",
-      element: <Layout />,
+      path: '/',
+      element: (
+        <PrivateRoute>
+          <Layout />
+        </PrivateRoute>
+      ),
       children: [
         {
           path: "/",
@@ -335,4 +341,10 @@ function Router() {
   return useRoutes(routes);
 }
 
-export default Router;
+export default function App() {
+  return (
+    <AuthProvider>
+      <Router />
+    </AuthProvider>
+  );
+}

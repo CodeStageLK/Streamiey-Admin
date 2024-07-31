@@ -455,15 +455,15 @@ function Main() {
                     />
                   </Menu.Button>
                   <Menu.Items className="w-56 mt-1">
-                    <Menu.Item
+                    {/* <Menu.Item
                       onClick={() => {
                         setSwitchAccount(true);
                       }}
                     >
                       <Lucide icon="ToggleLeft" className="w-4 h-4 mr-2" />
                       Switch Account
-                    </Menu.Item>
-                    <Menu.Divider />
+                    </Menu.Item> */}
+                    {/* <Menu.Divider /> */}
                     <Menu.Item
                       onClick={() => {
                         navigate("settings?page=connected-services");
@@ -472,14 +472,14 @@ function Main() {
                       <Lucide icon="Settings" className="w-4 h-4 mr-2" />
                       Connected Services
                     </Menu.Item>
-                    <Menu.Item
+                    {/* <Menu.Item
                       onClick={() => {
                         navigate("settings?page=email-settings");
                       }}
                     >
                       <Lucide icon="Inbox" className="w-4 h-4 mr-2" />
                       Email Settings
-                    </Menu.Item>
+                    </Menu.Item> */}
                     <Menu.Item
                       onClick={() => {
                         navigate("settings?page=security");

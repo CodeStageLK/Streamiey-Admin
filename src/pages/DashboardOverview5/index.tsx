@@ -18,23 +18,6 @@ function Main() {
               </div>
             </div>
             <div className="p-5 mt-3.5 box box--stacked">
-              <Menu className="absolute top-0 right-0 mt-5 mr-5">
-                <Menu.Button className="w-5 h-5 text-slate-500">
-                  <Lucide
-                    icon="MoreVertical"
-                    className="w-6 h-6 stroke-slate-400/70 fill-slate-400/70"
-                  />
-                </Menu.Button>
-                <Menu.Items className="w-40">
-                  <Menu.Item>
-                    <Lucide icon="Copy" className="w-4 h-4 mr-2" /> Copy Link
-                  </Menu.Item>
-                  <Menu.Item>
-                    <Lucide icon="Trash" className="w-4 h-4 mr-2" />
-                    Delete
-                  </Menu.Item>
-                </Menu.Items>
-              </Menu>
               <div className="flex items-center justify-center w-12 h-12 border rounded-full border-info/10 bg-info/10">
                 <Lucide icon="Box" className="w-6 h-6 text-info fill-info/10" />
               </div>

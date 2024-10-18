@@ -174,7 +174,8 @@ function Main() {
         >
           <div className="sticky top-0 z-10 flex-col justify-center hidden h-screen ml-16 lg:flex xl:ml-28 2xl:ml-36">
             <div className="leading-[1.4] text-[2.6rem] xl:text-5xl font-medium xl:leading-[1.2] text-white">
-              Embrace Excellence <br /> in Dashboard Development
+              Pay-Per-View <br /> 
+              
             </div>
             <div className="mt-5 text-base leading-relaxed xl:text-lg text-white/70">
               Unlock the potential of Tailwise, where developers craft

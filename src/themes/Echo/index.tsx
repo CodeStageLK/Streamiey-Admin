@@ -21,6 +21,7 @@ import SwitchAccount from "@/components/SwitchAccount";
 import NotificationsPanel from "@/components/NotificationsPanel";
 import ActivitiesPanel from "@/components/ActivitiesPanel";
 import app_logo from "@/assets/images/app_logo.png";
+import { useAuth } from "@/authContext";
 
 function Main() {
   const dispatch = useAppDispatch();
@@ -45,7 +46,7 @@ function Main() {
   const scrollableRef = createRef<HTMLDivElement>();
 
   const [topBarActive, setTopBarActive] = useState(false);
-
+  const auth = useAuth();
   const toggleCompactMenu = (event: React.MouseEvent) => {
     event.preventDefault();
     setCompactMenu(!compactMenu);
@@ -66,6 +67,11 @@ function Main() {
     if (el.requestFullscreen) {
       el.requestFullscreen();
     }
+  };
+
+  const logout = () => {
+    auth.logout();
+    navigate('/login');
   };
 
   useEffect(() => {
@@ -498,9 +504,7 @@ function Main() {
                       Profile Info
                     </Menu.Item>
                     <Menu.Item
-                      onClick={() => {
-                        navigate("login");
-                      }}
+                      onClick={logout}
                     >
                       <Lucide icon="Power" className="w-4 h-4 mr-2" />
                       Logout

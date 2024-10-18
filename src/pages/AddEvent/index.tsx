@@ -15,6 +15,7 @@ import _ from "lodash";
 import { useNavigate } from "react-router-dom";
 import { ClassicEditor } from "@/components/Base/Ckeditor";
 import Dropzone, { DropzoneElement } from "@/components/Base/Dropzone";
+import TomSelect from "@/components/Base/TomSelect";
 
 function Main() {
   const [dateOfBirth, setDateOfBirth] = useState<string>();
@@ -24,7 +25,7 @@ function Main() {
   const gotoDetails = () => {
     navigate("/events");
   };
-
+  const [selectMultiple, setSelectMultiple] = useState(["1", "3"]);
   const dropzoneSingleRef = useRef<DropzoneElement>();
 
   useEffect(() => {
@@ -231,46 +232,9 @@ function Main() {
                 <label className="inline-block mb-2 sm:mb-0 sm:mr-5 sm:text-right xl:w-60 xl:mr-14">
                   <div className="text-left">
                     <div className="flex items-center">
-                      <div className="font-medium">Thumbnail Image (500px*500px)</div>
-                      <div className="ml-2.5 px-2 py-0.5 bg-slate-100 text-slate-500 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md border border-slate-200">
-                        Required
+                      <div className="font-medium">
+                        Thumbnail Image (500px*500px)
                       </div>
-                    </div>
-                  </div>
-                </label>
-                <div className="flex-1 w-full mt-3 xl:mt-0">
-                  <Dropzone
-                    getRef={(el) => {
-                      dropzoneSingleRef.current = el;
-                    }}
-                    options={{
-                      url: "https://httpbin.org/post",
-                      thumbnailWidth: 150,
-                      maxFilesize: 0.5,
-                      maxFiles: 1,
-                      headers: {
-                        "My-Awesome-Header": "header value",
-                      },
-                    }}
-                    className="dropzone"
-                  >
-                    <div className="text-lg font-medium">
-                      Drop files here or click to upload.
-                    </div>
-                    <div className="text-gray-600">
-                      This is just a demo dropzone. Selected files are
-                      <span className="font-medium">not</span> actually
-                      uploaded.
-                    </div>
-                  </Dropzone>
-                </div>
-              </div>
-
-              <div className="flex-col block pt-5 mt-5 xl:items-center sm:flex xl:flex-row first:mt-0 first:pt-0">
-                <label className="inline-block mb-2 sm:mb-0 sm:mr-5 sm:text-right xl:w-60 xl:mr-14">
-                  <div className="text-left">
-                    <div className="flex items-center">
-                      <div className="font-medium">Banner Image (1920px*1080px)</div>
                       <div className="ml-2.5 px-2 py-0.5 bg-slate-100 text-slate-500 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md border border-slate-200">
                         Required
                       </div>
@@ -310,6 +274,47 @@ function Main() {
                   <div className="text-left">
                     <div className="flex items-center">
                       <div className="font-medium">
+                        Banner Image (1920px*1080px)
+                      </div>
+                      <div className="ml-2.5 px-2 py-0.5 bg-slate-100 text-slate-500 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md border border-slate-200">
+                        Required
+                      </div>
+                    </div>
+                  </div>
+                </label>
+                <div className="flex-1 w-full mt-3 xl:mt-0">
+                  <Dropzone
+                    getRef={(el) => {
+                      dropzoneSingleRef.current = el;
+                    }}
+                    options={{
+                      url: "https://httpbin.org/post",
+                      thumbnailWidth: 300,
+                      maxFilesize: 20,
+                      maxFiles: 1,
+                      headers: {
+                        "My-Awesome-Header": "header value",
+                      },
+                    }}
+                    className="dropzone"
+                  >
+                    <div className="text-lg font-medium">
+                      Drop files here or click to upload.
+                    </div>
+                    <div className="text-gray-600">
+                      This is just a demo dropzone. Selected files are
+                      <span className="font-medium">not</span> actually
+                      uploaded.
+                    </div>
+                  </Dropzone>
+                </div>
+              </div>
+
+              <div className="flex-col block pt-5 mt-5 xl:items-center sm:flex xl:flex-row first:mt-0 first:pt-0">
+                <label className="inline-block mb-2 sm:mb-0 sm:mr-5 sm:text-right xl:w-60 xl:mr-14">
+                  <div className="text-left">
+                    <div className="flex items-center">
+                      <div className="font-medium">
                         Trailer URL (YouTube embed URL)
                       </div>
                     </div>
@@ -321,6 +326,68 @@ function Main() {
                       type="text"
                       className="first:rounded-b-none first:md:rounded-bl-md first:md:rounded-r-none [&:not(:first-child):not(:last-child)]:-mt-px [&:not(:first-child):not(:last-child)]:md:mt-0 [&:not(:first-child):not(:last-child)]:md:-ml-px [&:not(:first-child):not(:last-child)]:rounded-none last:rounded-t-none last:md:rounded-l-none last:md:rounded-tr-md last:-mt-px last:md:mt-0 last:md:-ml-px focus:z-10"
                     />
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex-col block pt-5 mt-5 xl:items-center sm:flex xl:flex-row first:mt-0 first:pt-0">
+                <label className="inline-block mb-2 sm:mb-0 sm:mr-5 sm:text-right xl:w-60 xl:mr-14">
+                  <div className="text-left">
+                    <div className="flex items-center">
+                      <div className="font-medium">Allowed Countries</div>
+                    </div>
+                  </div>
+                </label>
+                <div className="flex-1 w-full mt-3 xl:mt-0">
+                  <div className="flex flex-col items-center md:flex-row">
+                    <TomSelect
+                      value={selectMultiple}
+                      onChange={(e) => {
+                        setSelectMultiple(e.target.value);
+                      }}
+                      options={{
+                        placeholder: "Select your favorite actors",
+                      }}
+                      className="w-full"
+                      multiple
+                    >
+                      <option value="1">Leonardo DiCaprio</option>
+                      <option value="2">Johnny Deep</option>
+                      <option value="3">Robert Downey, Jr</option>
+                      <option value="4">Samuel L. Jackson</option>
+                      <option value="5">Morgan Freeman</option>
+                    </TomSelect>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex-col block pt-5 mt-5 xl:items-center sm:flex xl:flex-row first:mt-0 first:pt-0">
+                <label className="inline-block mb-2 sm:mb-0 sm:mr-5 sm:text-right xl:w-60 xl:mr-14">
+                  <div className="text-left">
+                    <div className="flex items-center">
+                      <div className="font-medium">Disallowed Countries</div>
+                    </div>
+                  </div>
+                </label>
+                <div className="flex-1 w-full mt-3 xl:mt-0">
+                  <div className="flex flex-col items-center md:flex-row">
+                    <TomSelect
+                      value={selectMultiple}
+                      onChange={(e) => {
+                        setSelectMultiple(e.target.value);
+                      }}
+                      options={{
+                        placeholder: "Select your favorite actors",
+                      }}
+                      className="w-full"
+                      multiple
+                    >
+                      <option value="1">Leonardo DiCaprio</option>
+                      <option value="2">Johnny Deep</option>
+                      <option value="3">Robert Downey, Jr</option>
+                      <option value="4">Samuel L. Jackson</option>
+                      <option value="5">Morgan Freeman</option>
+                    </TomSelect>
                   </div>
                 </div>
               </div>

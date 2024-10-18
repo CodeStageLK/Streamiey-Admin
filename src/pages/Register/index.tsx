@@ -5,8 +5,16 @@ import Button from "@/components/Base/Button";
 import clsx from "clsx";
 import _ from "lodash";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
+import { useNavigate } from "react-router-dom";
 
 function Main() {
+
+  const navigate = useNavigate();
+  
+  const gotoDetails = ()=>{
+    navigate("/transactions/transaction-detail");
+  }
+  
   return (
     <>
       <div className="container grid lg:h-screen grid-cols-12 lg:max-w-[1550px] 2xl:max-w-[1750px] py-10 px-5 sm:py-14 sm:px-10 md:px-36 lg:py-0 lg:pl-14 lg:pr-12 xl:px-24">
@@ -30,7 +38,7 @@ function Main() {
               <div className="text-2xl font-medium">Sign Up</div>
               <div className="mt-2.5 text-slate-600">
                 Already have an account?{" "}
-                <a className="font-medium text-primary" href="">
+                <a className="font-medium text-primary cursor-pointer" onClick={gotoDetails}>
                   Sign In
                 </a>
               </div>
@@ -95,19 +103,21 @@ function Main() {
                   .
                 </div>
                 <div className="mt-5 text-center xl:mt-8 xl:text-left">
+                  
                   <Button
                     variant="primary"
                     rounded
                     className="bg-gradient-to-r from-theme-1/70 to-theme-2/70 w-full py-3.5 xl:mr-3"
                   >
-                    Sign In
+                    Sign Up
                   </Button>
                   <Button
                     variant="outline-secondary"
                     rounded
                     className="bg-white/70 w-full py-3.5 mt-3"
+                    onClick={gotoDetails}
                   >
-                    Sign Up
+                    Sign In
                   </Button>
                 </div>
               </div>

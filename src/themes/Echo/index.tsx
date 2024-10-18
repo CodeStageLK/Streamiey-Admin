@@ -21,6 +21,7 @@ import SwitchAccount from "@/components/SwitchAccount";
 import NotificationsPanel from "@/components/NotificationsPanel";
 import ActivitiesPanel from "@/components/ActivitiesPanel";
 import app_logo from "@/assets/images/app_logo.png";
+import { useAuth } from "@/authContext";
 
 function Main() {
   const dispatch = useAppDispatch();
@@ -45,7 +46,7 @@ function Main() {
   const scrollableRef = createRef<HTMLDivElement>();
 
   const [topBarActive, setTopBarActive] = useState(false);
-
+  const auth = useAuth();
   const toggleCompactMenu = (event: React.MouseEvent) => {
     event.preventDefault();
     setCompactMenu(!compactMenu);
@@ -66,6 +67,11 @@ function Main() {
     if (el.requestFullscreen) {
       el.requestFullscreen();
     }
+  };
+
+  const logout = () => {
+    auth.logout();
+    navigate('/login');
   };
 
   useEffect(() => {
@@ -455,15 +461,15 @@ function Main() {
                     />
                   </Menu.Button>
                   <Menu.Items className="w-56 mt-1">
-                    <Menu.Item
+                    {/* <Menu.Item
                       onClick={() => {
                         setSwitchAccount(true);
                       }}
                     >
                       <Lucide icon="ToggleLeft" className="w-4 h-4 mr-2" />
                       Switch Account
-                    </Menu.Item>
-                    <Menu.Divider />
+                    </Menu.Item> */}
+                    {/* <Menu.Divider /> */}
                     <Menu.Item
                       onClick={() => {
                         navigate("settings?page=connected-services");
@@ -472,14 +478,14 @@ function Main() {
                       <Lucide icon="Settings" className="w-4 h-4 mr-2" />
                       Connected Services
                     </Menu.Item>
-                    <Menu.Item
+                    {/* <Menu.Item
                       onClick={() => {
                         navigate("settings?page=email-settings");
                       }}
                     >
                       <Lucide icon="Inbox" className="w-4 h-4 mr-2" />
                       Email Settings
-                    </Menu.Item>
+                    </Menu.Item> */}
                     <Menu.Item
                       onClick={() => {
                         navigate("settings?page=security");
@@ -498,9 +504,7 @@ function Main() {
                       Profile Info
                     </Menu.Item>
                     <Menu.Item
-                      onClick={() => {
-                        navigate("login");
-                      }}
+                      onClick={logout}
                     >
                       <Lucide icon="Power" className="w-4 h-4 mr-2" />
                       Logout

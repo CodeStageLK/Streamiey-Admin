@@ -69,7 +69,7 @@ function Main() {
                   />{" "}
                   Profile Info
                 </Link>
-                <Link
+                {/* <Link
                   to="/settings?page=email-settings"
                   className={clsx([
                     "flex items-center py-3 first:-mt-3 last:-mb-3 [&.active]:text-primary [&.active]:font-medium hover:text-primary",
@@ -81,7 +81,7 @@ function Main() {
                     className="stroke-[1.3] w-4 h-4 mr-3"
                   />{" "}
                   Email Settings
-                </Link>
+                </Link> */}
                 <Link
                   to="/settings?page=security"
                   className={clsx([
@@ -124,7 +124,7 @@ function Main() {
                   />{" "}
                   Two-factor Authentication
                 </Link>
-                <Link
+                {/* <Link
                   to="/settings?page=device-history"
                   className={clsx([
                     "flex items-center py-3 first:-mt-3 last:-mb-3 [&.active]:text-primary [&.active]:font-medium hover:text-primary",
@@ -136,7 +136,7 @@ function Main() {
                     className="stroke-[1.3] w-4 h-4 mr-3"
                   />{" "}
                   Device History
-                </Link>
+                </Link> */}
                 <Link
                   to="/settings?page=notification-settings"
                   className={clsx([
@@ -221,7 +221,7 @@ function Main() {
               </div>
               <div className="p-5 flex flex-col sm:flex-row gap-y-3 sm:items-end rounded-[0.6rem] bg-slate-50 pt-12">
                 <div>
-                  <FormLabel
+                  {/* <FormLabel
                     htmlFor="regular-form-1"
                     className="flex items-center text-slate-500"
                   >
@@ -232,8 +232,8 @@ function Main() {
                         className="w-3.5 h-3.5 text-slate-500 stroke-[1.3]"
                       />
                     </Tippy>
-                  </FormLabel>
-                  <div className="relative mt-2.5">
+                  </FormLabel> */}
+                  {/* <div className="relative mt-2.5">
                     <Lucide
                       icon="Globe"
                       className="absolute inset-y-0 left-0 z-10 w-4 h-4 my-auto ml-3 stroke-[1.3]"
@@ -242,7 +242,7 @@ function Main() {
                       <option value="custom-date">Anyone</option>
                       <option value="daily">Only you</option>
                     </FormSelect>
-                  </div>
+                  </div> */}
                 </div>
                 <Button
                   variant="outline-primary"

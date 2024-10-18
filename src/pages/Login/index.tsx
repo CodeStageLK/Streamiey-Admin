@@ -7,8 +7,39 @@ import Lucide from "@/components/Base/Lucide";
 import clsx from "clsx";
 import _ from "lodash";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../authContext";
+import { useState } from "react";
+import { Menu, Dialog } from "@/components/Base/Headless";
 
 function Main() {
+  const auth = useAuth();
+  const navigate = useNavigate();
+  const [warningModalPreview, setWarningModalPreview] = useState(false);
+  const [username, setUsername] = useState("user");
+  const [password, setPassword] = useState("pass");
+
+  const gotoDetails = () => {
+    navigate("/register");
+  };
+
+  // const Login = ()=>{
+  //   navigate("/");
+  // }
+
+  const Login = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Add your authentication logic here
+    // For example, checking the username and password against a static value
+    if (username === "user" && password === "pass") {
+      auth.login();
+      navigate("/");
+    } else {
+      // alert("Invalid credentials");
+      setWarningModalPreview(true);
+    }
+  };
+
   return (
     <>
       <div className="container grid lg:h-screen grid-cols-12 lg:max-w-[1550px] 2xl:max-w-[1750px] py-10 px-5 sm:py-14 sm:px-10 md:px-36 lg:py-0 lg:pl-14 lg:pr-12 xl:px-24">
@@ -32,7 +63,10 @@ function Main() {
               <div className="text-2xl font-medium">Sign In</div>
               <div className="mt-2.5 text-slate-600">
                 Don't have an account?{" "}
-                <a className="font-medium text-primary" href="">
+                <a
+                  className="font-medium text-primary cursor-pointer"
+                  onClick={gotoDetails}
+                >
                   Sign Up
                 </a>
               </div>
@@ -49,8 +83,8 @@ function Main() {
                       />
                     </div>
                     <div className="ml-1 mr-8">
-                      Welcome to <span className="font-medium">Tailwise</span>{" "}
-                      demo! Simply click{" "}
+                      Welcome to <span className="font-medium">Streamiey</span>{" "}
+                      ! Simply click{" "}
                       <span className="font-medium">Sign In</span> to explore
                       and access our documentation.
                     </div>
@@ -70,13 +104,19 @@ function Main() {
                 <FormInput
                   type="text"
                   className="block px-4 py-3.5 rounded-[0.6rem] border-slate-300/80"
-                  placeholder={users.fakeUsers()[0].email}
+                  id="username"
+                  placeholder="user"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                 />
                 <FormLabel className="mt-4">Password*</FormLabel>
                 <FormInput
                   type="password"
                   className="block px-4 py-3.5 rounded-[0.6rem] border-slate-300/80"
-                  placeholder="************"
+                  id="password"
+                  placeholder="pass"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <div className="flex mt-4 text-xs text-slate-500 sm:text-sm">
                   <div className="flex items-center mr-auto">
@@ -99,6 +139,7 @@ function Main() {
                     variant="primary"
                     rounded
                     className="bg-gradient-to-r from-theme-1/70 to-theme-2/70 w-full py-3.5 xl:mr-3"
+                    onClick={Login}
                   >
                     Sign In
                   </Button>
@@ -106,6 +147,7 @@ function Main() {
                     variant="outline-secondary"
                     rounded
                     className="bg-white/70 w-full py-3.5 mt-3"
+                    onClick={gotoDetails}
                   >
                     Sign Up
                   </Button>
@@ -132,7 +174,8 @@ function Main() {
         >
           <div className="sticky top-0 z-10 flex-col justify-center hidden h-screen ml-16 lg:flex xl:ml-28 2xl:ml-36">
             <div className="leading-[1.4] text-[2.6rem] xl:text-5xl font-medium xl:leading-[1.2] text-white">
-              Embrace Excellence <br /> in Dashboard Development
+              Pay-Per-View <br /> 
+              
             </div>
             <div className="mt-5 text-base leading-relaxed xl:text-lg text-white/70">
               Unlock the potential of Tailwise, where developers craft
@@ -186,7 +229,37 @@ function Main() {
           </div>
         </div>
       </div>
-      <ThemeSwitcher />
+      <Dialog
+        open={warningModalPreview}
+        onClose={() => {
+          setWarningModalPreview(false);
+        }}
+      >
+        <Dialog.Panel>
+          <div className="p-5 text-center">
+            <Lucide
+              icon="XCircle"
+              className="w-16 h-16 mx-auto mt-3 text-warning"
+            />
+            <div className="mt-5 text-3xl">Oops...</div>
+            <div className="mt-2 text-slate-500">Invalid credentials!</div>
+          </div>
+          <div className="px-5 pb-8 text-center">
+            <Button
+              type="button"
+              variant="primary"
+              onClick={() => {
+                setWarningModalPreview(false);
+              }}
+              className="w-24"
+            >
+              Ok
+            </Button>
+          </div>
+          
+        </Dialog.Panel>
+      </Dialog>
+      {/* <ThemeSwitcher /> */}
     </>
   );
 }

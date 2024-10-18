@@ -15,3 +15,13 @@
         }
     }
 }
+
+.dropzone .dz-preview .dz-image {
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100% !important;
+    height: 120px !important;
+    position: relative;
+    display: block;
+    z-index: 10;
+  }

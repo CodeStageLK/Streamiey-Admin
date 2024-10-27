@@ -17,10 +17,37 @@ import { ClassicEditor } from "@/components/Base/Ckeditor";
 import Dropzone, { DropzoneElement } from "@/components/Base/Dropzone";
 import TomSelect from "@/components/Base/TomSelect";
 
+type EventData = {
+  eventTitle: string;
+  eventDescription: string;
+  eventStartDateTime: string;
+  eventEndDateTime: string;
+  thumbmailImage: string;
+  bannerImage: string;
+  trailerVideo: string;
+  allowedCountry: string[];
+  disallowedCountry: string[];
+  country: string;
+  publishEvents: boolean;
+};
+
 function Main() {
   const [dateOfBirth, setDateOfBirth] = useState<string>();
   const navigate = useNavigate();
   const [editorData, setEditorData] = useState("<p>Content of the editor.</p>");
+  const [eventData, setEventData] = useState<EventData>({
+    eventTitle: "",
+    eventDescription: "",
+    eventStartDateTime: "",
+    eventEndDateTime: "",
+    thumbmailImage: "",
+    bannerImage: "",
+    trailerVideo: "",
+    allowedCountry: [],
+    disallowedCountry: [],
+    country: "",
+    publishEvents: false,
+  });
 
   const gotoDetails = () => {
     navigate("/events");
@@ -40,10 +67,30 @@ function Main() {
     }
   }, []);
 
+  const handleAllowedCountryChange = (selectedOptions: string[]) => {
+    setEventData((prev) => ({
+      ...prev,
+      allowedCountry: selectedOptions,
+    }));
+  };
+
+  const handleDisAllowedCountryChange = (selectedOptions: string[]) => {
+    setEventData((prev) => ({
+      ...prev,
+      disallowedCountry: selectedOptions,
+    }));
+  };
+
+  const handleAddEvent = () => {
+    if (eventData) {
+      console.log("eventData", eventData);
+    }
+  };
+
   return (
     <div className="grid grid-cols-12 gap-y-10 gap-x-6">
       <div className="col-span-12">
-        <div className="flex flex-col lg:h-10 gap-y-3 lg:items-center lg:flex-row cursor-pointer">
+        <div className="flex flex-col cursor-pointer lg:h-10 gap-y-3 lg:items-center lg:flex-row">
           <div
             className="text-lg font-medium group-[.mode--light]:text-white flex items-center"
             onClick={gotoDetails}
@@ -142,7 +189,13 @@ function Main() {
                     <FormInput
                       type="text"
                       className="first:rounded-b-none first:md:rounded-bl-md first:md:rounded-r-none [&:not(:first-child):not(:last-child)]:-mt-px [&:not(:first-child):not(:last-child)]:md:mt-0 [&:not(:first-child):not(:last-child)]:md:-ml-px [&:not(:first-child):not(:last-child)]:rounded-none last:rounded-t-none last:md:rounded-l-none last:md:rounded-tr-md last:-mt-px last:md:mt-0 last:md:-ml-px focus:z-10"
-                      placeholder={users.fakeUsers()[0].name.split(" ")[0]}
+                      placeholder="Enter Event Name"
+                      onChange={(e) =>
+                        setEventData((prev) => ({
+                          ...prev,
+                          eventTitle: e.target.value,
+                        }))
+                      }
                     />
                   </div>
                 </div>
@@ -164,7 +217,15 @@ function Main() {
                   </div>
                 </label>
                 <div className="flex-1 w-full mt-3 xl:mt-0">
-                  <ClassicEditor value={editorData} onChange={setEditorData} />
+                  <ClassicEditor
+                    value={eventData?.eventDescription}
+                    onChange={(e) =>
+                      setEventData((prev) => ({
+                        ...prev,
+                        eventDescription: e.target.value,
+                      }))
+                    }
+                  />
                 </div>
               </div>
 
@@ -181,10 +242,13 @@ function Main() {
                 </label>
                 <div className="flex-1 w-full mt-3 xl:mt-0">
                   <Litepicker
-                    value={dateOfBirth}
-                    onChange={(e) => {
-                      setDateOfBirth(e.target.value);
-                    }}
+                    value={eventData?.eventStartDateTime}
+                    onChange={(e) =>
+                      setEventData((prev) => ({
+                        ...prev,
+                        eventStartDateTime: e.target.value,
+                      }))
+                    }
                     options={{
                       autoApply: false,
                       dropdowns: {
@@ -211,10 +275,13 @@ function Main() {
                 </label>
                 <div className="flex-1 w-full mt-3 xl:mt-0">
                   <Litepicker
-                    value={dateOfBirth}
-                    onChange={(e) => {
-                      setDateOfBirth(e.target.value);
-                    }}
+                    value={eventData?.eventEndDateTime}
+                    onChange={(e) =>
+                      setEventData((prev) => ({
+                        ...prev,
+                        eventEndDateTime: e.target.value,
+                      }))
+                    }
                     options={{
                       autoApply: false,
                       dropdowns: {
@@ -325,6 +392,12 @@ function Main() {
                     <FormInput
                       type="text"
                       className="first:rounded-b-none first:md:rounded-bl-md first:md:rounded-r-none [&:not(:first-child):not(:last-child)]:-mt-px [&:not(:first-child):not(:last-child)]:md:mt-0 [&:not(:first-child):not(:last-child)]:md:-ml-px [&:not(:first-child):not(:last-child)]:rounded-none last:rounded-t-none last:md:rounded-l-none last:md:rounded-tr-md last:-mt-px last:md:mt-0 last:md:-ml-px focus:z-10"
+                      onChange={(e) =>
+                        setEventData((prev) => ({
+                          ...prev,
+                          trailerVideo: e.target.value,
+                        }))
+                      }
                     />
                   </div>
                 </div>
@@ -341,9 +414,10 @@ function Main() {
                 <div className="flex-1 w-full mt-3 xl:mt-0">
                   <div className="flex flex-col items-center md:flex-row">
                     <TomSelect
-                      value={selectMultiple}
-                      onChange={(e) => {
-                        setSelectMultiple(e.target.value);
+                      value={eventData.allowedCountry}
+                      onChange={(event) => {
+                        const selectedCountries = event.target.value;
+                        handleAllowedCountryChange(selectedCountries);
                       }}
                       options={{
                         placeholder: "Select your favorite actors",
@@ -351,11 +425,17 @@ function Main() {
                       className="w-full"
                       multiple
                     >
-                      <option value="1">Leonardo DiCaprio</option>
-                      <option value="2">Johnny Deep</option>
-                      <option value="3">Robert Downey, Jr</option>
-                      <option value="4">Samuel L. Jackson</option>
-                      <option value="5">Morgan Freeman</option>
+                      <option value="Leonardo DiCaprio">
+                        Leonardo DiCaprio
+                      </option>
+                      <option value="Johnny Deep">Johnny Deep</option>
+                      <option value="Robert Downey, Jr">
+                        Robert Downey, Jr
+                      </option>
+                      <option value="Samuel L. Jackson">
+                        Samuel L. Jackson
+                      </option>
+                      <option value="Morgan Freeman">Morgan Freeman</option>
                     </TomSelect>
                   </div>
                 </div>
@@ -372,9 +452,10 @@ function Main() {
                 <div className="flex-1 w-full mt-3 xl:mt-0">
                   <div className="flex flex-col items-center md:flex-row">
                     <TomSelect
-                      value={selectMultiple}
-                      onChange={(e) => {
-                        setSelectMultiple(e.target.value);
+                      value={eventData.disallowedCountry}
+                      onChange={(event) => {
+                        const selectedCountries = event.target.value;
+                        handleDisAllowedCountryChange(selectedCountries);
                       }}
                       options={{
                         placeholder: "Select your favorite actors",
@@ -382,11 +463,17 @@ function Main() {
                       className="w-full"
                       multiple
                     >
-                      <option value="1">Leonardo DiCaprio</option>
-                      <option value="2">Johnny Deep</option>
-                      <option value="3">Robert Downey, Jr</option>
-                      <option value="4">Samuel L. Jackson</option>
-                      <option value="5">Morgan Freeman</option>
+                      <option value="Leonardo DiCaprio">
+                        Leonardo DiCaprio
+                      </option>
+                      <option value="Johnny Deep">Johnny Deep</option>
+                      <option value="Robert Downey, Jr">
+                        Robert Downey, Jr
+                      </option>
+                      <option value="Samuel L. Jackson">
+                        Samuel L. Jackson
+                      </option>
+                      <option value="Morgan Freeman">Morgan Freeman</option>
                     </TomSelect>
                   </div>
                 </div>
@@ -401,9 +488,16 @@ function Main() {
                   </div>
                 </label>
                 <div className="flex-1 w-full mt-3 xl:mt-0">
-                  <FormSelect>
-                    <option value="1"> United Kingdom </option>
-                    <option value="0"> Sri Lanka </option>
+                  <FormSelect
+                    onChange={(e) =>
+                      setEventData((prev) => ({
+                        ...prev,
+                        country: e.target.value,
+                      }))
+                    }
+                  >
+                    <option value="United Kingdom"> United Kingdom </option>
+                    <option value="Sri Lanka"> Sri Lanka </option>
                   </FormSelect>
                 </div>
               </div>
@@ -417,9 +511,17 @@ function Main() {
                   </div>
                 </label>
                 <div className="flex-1 w-full mt-3 xl:mt-0">
-                  <FormSelect>
-                    <option value="1"> Yes </option>
+                  <FormSelect
+                    onChange={(e) => {
+                      const value = e.target.value === "1";
+                      setEventData((prev) => ({
+                        ...prev,
+                        publishEvents: value,
+                      }));
+                    }}
+                  >
                     <option value="0"> No </option>
+                    <option value="1"> Yes </option>
                   </FormSelect>
                 </div>
               </div>
@@ -428,6 +530,7 @@ function Main() {
               <Button
                 variant="outline-primary"
                 className="w-full px-10 md:w-auto border-primary/50"
+                onClick={handleAddEvent}
               >
                 <Lucide
                   icon="Pocket"

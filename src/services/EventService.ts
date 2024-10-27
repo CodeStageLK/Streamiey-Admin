@@ -6,11 +6,11 @@ const apiClient: AxiosInstance = axios.create({
   //   timeout: 10000,
   headers: authHeader(),
 });
-const getUserDetails = async () => {
+
+const getRecentEvents = async () => {
   try {
-    const response = await apiClient.get("/user/profile");
-    // console.log(response);
-    if (response.status === 200) {
+    const response = await apiClient.get("/event/get-recent-events/2");
+    if (response?.status === 200) {
       return {
         status: response?.status,
         data: response?.data,
@@ -27,8 +27,6 @@ const getUserDetails = async () => {
   }
 };
 
-const UserService = {
-  getUserDetails,
-};
+const EventService = { getRecentEvents };
 
-export default UserService;
+export default EventService;

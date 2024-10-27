@@ -9,7 +9,9 @@ const apiClient: AxiosInstance = axios.create({
 
 const getRecentEvents = async () => {
   try {
-    const response = await apiClient.get("/event/get-recent-events/2");
+    const response = await apiClient.get(
+      "/event/get-recent-events-for-creator"
+    );
     if (response?.status === 200) {
       return {
         status: response?.status,

@@ -2,12 +2,12 @@ export default function authHeader() {
   const root = localStorage.getItem("persist:root");
 
   if (root != null) {
-    const token = JSON.parse(root);
-    console.log(token);
-    //   const data = JSON.parse(JSON.parse(user).userToken);
-    if (token.user?.userToken) {
+    const jsonRoot = JSON.parse(root);
+    const token = JSON.parse(jsonRoot.user)?.userToken;
+    // console.log(token);
+    if (token) {
       return {
-        Authorization: "Bearer " + token.user?.userToken,
+        Authorization: "Bearer " + token,
         "Content-Type": "application/json",
       };
     } else {

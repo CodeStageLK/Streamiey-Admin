@@ -2,8 +2,13 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
 import AuthService from "./services/AuthService";
 import { useDispatch, useSelector } from "react-redux";
-import { saveToken, updateIsAuthenticatedStatus } from "./stores/userSlice";
+import {
+  loginSuccess,
+  saveToken,
+  updateIsAuthenticatedStatus,
+} from "./stores/userSlice";
 import { useNavigate } from "react-router-dom";
+import UserService from "./services/UserService";
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -31,8 +36,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
         if (response?.token && response?.status === 200) {
           dispatch(saveToken(response?.token));
-
           dispatch(updateIsAuthenticatedStatus(true));
+          UserService.getUserDetails().then((response: any) => {
+            if (response?.status === 200) {
+              dispatch(loginSuccess(response?.data));
+            } else {
+            }
+          });
           navigate("/");
         } else {
           dispatch(updateIsAuthenticatedStatus(false));

@@ -6,23 +6,21 @@ const apiClient: AxiosInstance = axios.create({
   //   timeout: 10000,
   headers: authHeader(),
 });
-const login = async (credentials: any) => {
+const getUserDetails = async () => {
   try {
-    const response = await apiClient.post("/auth/login", credentials);
-    // console.log(response);
+    const response = await apiClient.get("/user/profile");
+    console.log(response);
     if (response.status === 200) {
       return {
         status: response?.status,
-        token: response?.data?.token,
-        message: response?.data?.message,
+        data: response?.data,
       };
     } else {
       return { status: response?.status, message: response?.data?.message };
     }
   } catch (error) {
-    // Handle error appropriately
     if (axios.isAxiosError(error)) {
-      throw new Error(error.response?.data?.message || "Login failed");
+      throw new Error(error.response?.data?.message || "Fetch failed");
     } else {
       throw new Error("An unexpected error occurred");
     }
@@ -30,12 +28,7 @@ const login = async (credentials: any) => {
 };
 
 const UserService = {
-  login,
-  // logout,
-  // register,
-  // forgotPasswordRequest,
-  // resetPasswordRequest,
-  // resendVerifyEmail,
+  getUserDetails,
 };
 
 export default UserService;

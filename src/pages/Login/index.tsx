@@ -9,17 +9,24 @@ import _ from "lodash";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../authContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, Dialog } from "@/components/Base/Headless";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginSuccess } from "@/stores/userSlice";
 
 function Main() {
   const auth = useAuth();
   const navigate = useNavigate();
+  const { isAuthenticated } = useSelector((state: any) => state.user);
   const [warningModalPreview, setWarningModalPreview] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/");
+    }
+  }, [isAuthenticated]);
 
   const gotoDetails = () => {
     navigate("/register");

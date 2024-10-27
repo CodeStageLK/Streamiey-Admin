@@ -11,13 +11,15 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../authContext";
 import { useState } from "react";
 import { Menu, Dialog } from "@/components/Base/Headless";
+import { useDispatch } from "react-redux";
+import { loginSuccess } from "@/stores/userSlice";
 
 function Main() {
   const auth = useAuth();
   const navigate = useNavigate();
   const [warningModalPreview, setWarningModalPreview] = useState(false);
-  const [username, setUsername] = useState("user");
-  const [password, setPassword] = useState("pass");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const gotoDetails = () => {
     navigate("/register");
@@ -31,9 +33,8 @@ function Main() {
     e.preventDefault();
     // Add your authentication logic here
     // For example, checking the username and password against a static value
-    if (username === "user" && password === "pass") {
-      auth.login();
-      navigate("/");
+    if (username !== "" && password !== "") {
+      auth.login(username, password);
     } else {
       // alert("Invalid credentials");
       setWarningModalPreview(true);
@@ -64,7 +65,7 @@ function Main() {
               <div className="mt-2.5 text-slate-600">
                 Don't have an account?{" "}
                 <a
-                  className="font-medium text-primary cursor-pointer"
+                  className="font-medium cursor-pointer text-primary"
                   onClick={gotoDetails}
                 >
                   Sign Up
@@ -105,8 +106,8 @@ function Main() {
                   type="text"
                   className="block px-4 py-3.5 rounded-[0.6rem] border-slate-300/80"
                   id="username"
-                  placeholder="user"
-                  value={username}
+                  // value={username}
+                  placeholder="Email"
                   onChange={(e) => setUsername(e.target.value)}
                 />
                 <FormLabel className="mt-4">Password*</FormLabel>
@@ -114,8 +115,8 @@ function Main() {
                   type="password"
                   className="block px-4 py-3.5 rounded-[0.6rem] border-slate-300/80"
                   id="password"
-                  placeholder="pass"
-                  value={password}
+                  placeholder="Password"
+                  // value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <div className="flex mt-4 text-xs text-slate-500 sm:text-sm">
@@ -174,8 +175,7 @@ function Main() {
         >
           <div className="sticky top-0 z-10 flex-col justify-center hidden h-screen ml-16 lg:flex xl:ml-28 2xl:ml-36">
             <div className="leading-[1.4] text-[2.6rem] xl:text-5xl font-medium xl:leading-[1.2] text-white">
-              Pay-Per-View <br /> 
-              
+              Pay-Per-View <br />
             </div>
             <div className="mt-5 text-base leading-relaxed xl:text-lg text-white/70">
               Unlock the potential of Tailwise, where developers craft
@@ -256,7 +256,6 @@ function Main() {
               Ok
             </Button>
           </div>
-          
         </Dialog.Panel>
       </Dialog>
       {/* <ThemeSwitcher /> */}

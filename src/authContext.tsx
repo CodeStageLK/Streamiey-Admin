@@ -1,19 +1,50 @@
 // authContext.tsx
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode } from "react";
+import AuthService from "./services/AuthService";
+import { useDispatch, useSelector } from "react-redux";
+import { saveToken, updateIsAuthenticatedStatus } from "./stores/userSlice";
+import { useNavigate } from "react-router-dom";
 
 interface AuthContextType {
   isAuthenticated: boolean;
-  login: () => void;
+  login: (username: string, password: string) => Promise<void>;
   logout: () => void;
+}
+
+interface LoginRequest {
+  email: string;
+  password: string;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isAuthenticated } = useSelector((state: any) => state.user);
 
-  const login = () => setIsAuthenticated(true);
-  const logout = () => setIsAuthenticated(false);
+  const login = async (username: string, password: string) => {
+    try {
+      const obj: LoginRequest = { email: username, password: password };
+      await AuthService.login(obj).then((response: any) => {
+        console.log(response);
+
+        if (response?.token && response?.status === 200) {
+          dispatch(saveToken(response?.token));
+
+          dispatch(updateIsAuthenticatedStatus(true));
+          navigate("/");
+        } else {
+          dispatch(updateIsAuthenticatedStatus(false));
+        }
+      });
+    } catch (error) {
+      dispatch(updateIsAuthenticatedStatus(false));
+      console.error(error);
+    }
+  };
+
+  const logout = () => dispatch(updateIsAuthenticatedStatus(false));
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
@@ -25,7 +56,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 export function useAuth() {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
 }

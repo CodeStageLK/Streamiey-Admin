@@ -12,6 +12,7 @@ interface EventParams {
   page?: number;
   limit?: number;
   [key: string]: any;
+  eventId?: any;
 }
 
 const getRecentEvents = async (params?: EventParams) => {
@@ -37,9 +38,9 @@ const getRecentEvents = async (params?: EventParams) => {
   }
 };
 
-const getAllEvents = async (params?: EventParams) => {
+const getAllEventsByAdmin = async (params?: EventParams) => {
   try {
-    const response = await apiClient.get("/event/get-all-events-for-creator", {
+    const response = await apiClient.get("/admin/event/get-events-by-admin", {
       params, // Pass the params object here
     });
 
@@ -60,6 +61,36 @@ const getAllEvents = async (params?: EventParams) => {
   }
 };
 
-const EventService = { getRecentEvents, getAllEvents };
+const getEventByIdForAdmin = async (params?: EventParams) => {
+  try {
+    const response = await apiClient.get(
+      `/admin/event/get-events-by-id/${params?.eventId}`,
+      {
+        params, // Pass the params object here
+      }
+    );
+
+    if (response?.status === 200) {
+      return {
+        status: response?.status,
+        data: response?.data,
+      };
+    } else {
+      return { status: response?.status, message: response?.data?.message };
+    }
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(error.response?.data?.message || "Fetch failed");
+    } else {
+      throw new Error("An unexpected error occurred");
+    }
+  }
+};
+
+const EventService = {
+  getRecentEvents,
+  getAllEventsByAdmin,
+  getEventByIdForAdmin,
+};
 
 export default EventService;

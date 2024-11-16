@@ -24,13 +24,26 @@ function Main() {
   const sliderRef = useRef<TinySliderElement>();
   const navigate = useNavigate();
   const [recentEvents, setRecentEvents] = useState<any>([]);
+  const [allEvents, setAllEvents] = useState<any>([]);
 
   useEffect(() => {
     try {
       EventService.getRecentEvents().then((res) => {
         if (res?.status === 200) {
           setRecentEvents(res?.data?.events);
-          console.log(res?.data?.events);
+          // console.log(res?.data?.events);
+        } else {
+        }
+      });
+    } catch (error) {}
+  }, []);
+
+  useEffect(() => {
+    try {
+      EventService.getAllEventsByAdmin().then((res) => {
+        if (res?.status === 200) {
+          setAllEvents(res?.data?.events);
+          // console.log(res?.data?.events);
         } else {
         }
       });
@@ -341,11 +354,16 @@ function Main() {
         </div>
         <div className="overflow-hidden">
           <div className="grid grid-cols-12 -mx-5 ">
-            {_.take(transactions.fakeTransactions(), 4).map(
+            {/* {_.take(transactions.fakeTransactions(), 4).map(
               (faker, fakerKey) => (
                 <EventCard faker={faker} key={fakerKey} />
               )
-            )}
+            )} */}
+
+            {_.take(allEvents, 4).map((event: any) => (
+              // <></>
+              <EventCard data={event} key={event?.eventID} />
+            ))}
           </div>
         </div>
       </div>

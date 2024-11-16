@@ -9,13 +9,13 @@ import Button from "@/components/Base/Button";
 import Litepicker from "@/components/Base/Litepicker";
 import { Tab } from "@/components/Base/Headless";
 import Tippy from "@/components/Base/Tippy";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import clsx from "clsx";
 import _ from "lodash";
 import users from "@/fakers/users";
 import products from "@/fakers/products";
 import mountainImage from "@/assets/images/miscellaneous/cheer.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ReportBarChart4 from "@/components/ReportBarChart4";
 import ReportBarChart3 from "@/components/ReportBarChart3";
 import ReportBarChart6 from "@/components/ReportBarChart6";
@@ -24,18 +24,55 @@ import ReportBarChart5 from "@/components/ReportBarChart5";
 import VerticalBarChart from "@/components/VerticalBarChart";
 import { Preview } from "@/components/Base/PreviewComponent";
 import LineChart from "@/components/LineChart";
+import EventService from "@/services/EventService";
+import appLogo from "../../assets/images/app_logo.png";
 function Main() {
+  const { eventId } = useParams();
   const [generalReportFilter, setGeneralReportFilter] = useState<string>();
+  const [eventData, setEventData] = useState<any>();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (eventId) {
+      try {
+        EventService.getEventByIdForAdmin({
+          eventId,
+        }).then((res) => {
+          if (res?.status === 200) {
+            setEventData(res?.data?.event);
+            console.log(res?.data?.event);
+          } else {
+          }
+        });
+      } catch (error) {}
+    }
+  }, [eventId]);
 
   const gotoDetails = () => {
     navigate("/events");
   };
+
+  const formatDate = (dateString: string) => {
+    const options: Intl.DateTimeFormatOptions = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      // hour: "2-digit",
+      // minute: "2-digit",
+      // second: "2-digit",
+      hour12: true, // To display the time in 12-hour format
+      timeZone: "UTC", // Assuming you want to display it in UTC
+    };
+
+    const date = new Date(dateString);
+    return date.toLocaleString("en-US", options);
+  };
+
   return (
     <>
       <div className="grid grid-cols-12 gap-y-10 gap-x-6">
         <div className="col-span-12 2xl:col-span-12">
-          <div className="flex lg:h-10 gap-y-3 lg:items-center lg:flex-row cursor-pointer">
+          <div className="flex cursor-pointer lg:h-10 gap-y-3 lg:items-center lg:flex-row">
             <div
               className="text-lg font-medium group-[.mode--light]:text-white flex items-center"
               onClick={gotoDetails}
@@ -45,7 +82,7 @@ function Main() {
                 className="stroke-[1.3] w-3.5 h-3.5 sm:w-5 sm:h-5"
               />
               <div className="text-sm sm:text-lg">
-                Wimbledon tennis tournament
+                {eventData?.eventName || `Event Details`}
               </div>
             </div>
           </div>
@@ -54,14 +91,14 @@ function Main() {
             <div className="mt-3.5">
               <div className="flex flex-col gap-3 p-3 xl:flex-row box">
                 <div>
-                  <div className="w-80 h-80 overflow-hidden rounded-lg image-fit">
+                  <div className="overflow-hidden rounded-lg w-80 h-80 image-fit">
                     <img alt="event thumbnails" src={mountainImage} />
                   </div>
                 </div>
                 <div className="flex flex-col w-full p-5 sm:py-7 sm:px-8 rounded-[0.6rem] ">
                   <div className="flex flex-col flex-1 mt-6 gap-y-5 sm:mt-8 sm:mb-4 lg:mt-1 xl:mb-0 md:flex-row">
-                    <div className=" mt-1 flex flex-col gap-2">
-                      <div className="text-primary text-xl">
+                    <div className="flex flex-col gap-2 mt-1 ">
+                      <div className="text-xl text-primary">
                         Wimbledon tennis tournament
                       </div>
                       <div className="">
@@ -120,30 +157,36 @@ function Main() {
             <div className="mt-3.5">
               <div className="flex flex-col gap-3 p-3 xl:flex-row box">
                 <div>
-                  <div className="w-80 h-80 overflow-hidden rounded-lg image-fit">
-                    <img alt="event thumbnails" src={mountainImage} />
+                  <div className="overflow-hidden rounded-lg w-80 h-80 image-fit">
+                    <img
+                      alt="event thumbnails"
+                      src={eventData?.eventThumbnailUrl || appLogo}
+                    />
                   </div>
                 </div>
                 <div className="flex flex-col w-full p-5 sm:py-7 sm:px-8 rounded-[0.6rem] ">
                   <div className="flex flex-col flex-1 mt-6 gap-y-5 sm:mt-8 sm:mb-4 lg:mt-1 xl:mb-0 md:flex-row">
-                    <div className=" mt-1 flex flex-col gap-2">
-                      <div className="text-primary text-xl">
-                        Wimbledon tennis tournament
+                    <div className="flex flex-col gap-2 mt-1 ">
+                      <div className="text-xl text-primary">
+                        {eventData?.eventName || `Event Details`}
                       </div>
-                      <div className="">
-                        <div className="text-slate-500 text-xs whitespace-nowrap mt-0.5">
-                          Aired On
+                      {eventData?.eventStartDateTime && (
+                        <div className="">
+                          <div className="text-slate-500 text-xs whitespace-nowrap mt-0.5">
+                            Aired On
+                          </div>
+                          <a href="" className="font-lg whitespace-nowrap">
+                            {formatDate(eventData?.eventStartDateTime)}
+                          </a>
                         </div>
-                        <a href="" className="font-lg whitespace-nowrap">
-                          Sunday, 20th May 2021
-                        </a>
-                      </div>
+                      )}
+
                       <div className="">
                         <div className="text-slate-500 text-xs whitespace-nowrap mt-0.5">
                           Duration
                         </div>
                         <a href="" className="font-lg whitespace-nowrap">
-                          1 hr 40mins
+                          {eventData?.eventDuration || `-`}
                         </a>
                       </div>
                       <div className="">
@@ -222,7 +265,9 @@ function Main() {
                     </div>
                   </div>
                   <div className="mt-5 mb-5">
-                  <div className="text-base font-medium mb-4">Streaming Link</div>
+                    <div className="mb-4 text-base font-medium">
+                      Streaming Link
+                    </div>
                     <FormInput
                       id="regular-form-1"
                       type="text"
@@ -240,16 +285,16 @@ function Main() {
         <div className="col-span-12 md:col-span-6 xl:col-span-4">
           <div>
             <div className="mt-3">
-              <div className="flex flex-col md:h-full  md:items-center md:flex-row"></div>
+              <div className="flex flex-col md:h-full md:items-center md:flex-row"></div>
               <div className="p-5 box">
-                <div className="text-base font-medium mb-4">Impressions</div>
+                <div className="mb-4 text-base font-medium">Impressions</div>
                 <div className="mt-5">
-                  <div className=" mx-auto">
+                  <div className="mx-auto ">
                     <VerticalBarChart height={260} />
                   </div>
 
                   <div className="grid grid-cols-12 gap-5 mt-4">
-                    <div className="col-span-12 p-1 md:col-span-6 2xl:col-span-6 border-2 rounded-md border-slate-500">
+                    <div className="col-span-12 p-1 border-2 rounded-md md:col-span-6 2xl:col-span-6 border-slate-500">
                       <div className="pl-5 pr-5">
                         <div className="mt-2">
                           <div className="text-xs text-slate-500">
@@ -259,12 +304,12 @@ function Main() {
                             <span className="ml-px mr-1.5">
                               {_.random(1000, 5000)}
                             </span>
-                            <span className="ml-px mt-3 text-sm">users</span>
+                            <span className="mt-3 ml-px text-sm">users</span>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div className="col-span-12 p-1 md:col-span-6 2xl:col-span-6 border-2 rounded-md border-slate-500">
+                    <div className="col-span-12 p-1 border-2 rounded-md md:col-span-6 2xl:col-span-6 border-slate-500">
                       <div className="pl-5 pr-5">
                         <div className="mt-2">
                           <div className="text-xs text-slate-500">
@@ -274,14 +319,14 @@ function Main() {
                             <span className="ml-px mr-1.5">
                               {_.random(1000, 5000)}
                             </span>
-                            <span className="ml-px mt-3 text-sm">times</span>
+                            <span className="mt-3 ml-px text-sm">times</span>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div className="grid grid-cols-12 gap-5 mt-3">
-                    <div className="col-span-12 md:col-span-6 2xl:col-span-6 rounded-md border-2 border-slate-500">
+                    <div className="col-span-12 border-2 rounded-md md:col-span-6 2xl:col-span-6 border-slate-500">
                       <div className="pl-5 pr-5">
                         <div className="mt-2">
                           <div className="text-xs text-slate-500">
@@ -291,12 +336,12 @@ function Main() {
                             <span className="ml-px mr-1.5">
                               {_.random(1000, 5000)}
                             </span>
-                            <span className="ml-px mt-3 text-sm">users</span>
+                            <span className="mt-3 ml-px text-sm">users</span>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div className="col-span-12 md:col-span-6 2xl:col-span-6 rounded-md border-2 border-slate-500">
+                    <div className="col-span-12 border-2 rounded-md md:col-span-6 2xl:col-span-6 border-slate-500">
                       <div className="pl-5 pr-5">
                         <div className="mt-2">
                           <div className="text-xs text-slate-500">
@@ -306,7 +351,7 @@ function Main() {
                             <span className="ml-px mr-1.5">
                               {_.random(1000, 5000)}
                             </span>
-                            <span className="ml-px mt-3 text-sm">times</span>
+                            <span className="mt-3 ml-px text-sm">times</span>
                           </div>
                         </div>
                       </div>

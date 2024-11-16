@@ -66,12 +66,12 @@ import Layout from "../themes";
 import AllEvents from "@/pages/AllEvents";
 import SingleEvent from "@/pages/SingleEvent";
 
-import { AuthProvider } from '../authContext';
-import PrivateRoute from '../PrivateRoute';
+import { AuthProvider } from "../authContext";
+import PrivateRoute from "../PrivateRoute";
 function Router() {
   const routes = [
     {
-      path: '/',
+      path: "/",
       element: (
         <PrivateRoute>
           <Layout />
@@ -143,7 +143,7 @@ function Router() {
           element: <AddEvent />,
         },
         {
-          path: "events/event1",
+          path: "events/:eventId",
           element: <SingleEvent />,
         },
         {
